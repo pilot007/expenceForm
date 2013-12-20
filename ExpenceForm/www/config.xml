@@ -11,6 +11,7 @@
     <feature name="http://api.phonegap.com/1.0/network" />
     <feature name="http://api.phonegap.com/1.0/camera" />
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
     
     
     <preference name="permissions" value="none" />

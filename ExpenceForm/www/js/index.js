@@ -110,6 +110,23 @@ var app = {
                     targetHeight : 80,
                     saveToPhotoAlbum : false
              });
+      },
+      
+       detectCurrentLocation : function() {
+       var onGeoSuccess = function(position) {
+                    console.log(position);
+                    //var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+             };
+
+             var onGeoFail = function(error) {
+                    console.log(error);
+             };
+                           
+             navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
+                    timeout : 3000,
+                    enableHighAccuracy : true
+             });
        }
+      
 
 };
