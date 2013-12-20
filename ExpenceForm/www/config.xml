@@ -10,7 +10,8 @@
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="http://api.phonegap.com/1.0/network" />
     <feature name="http://api.phonegap.com/1.0/camera" />
-	<gap:plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+    
     
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
