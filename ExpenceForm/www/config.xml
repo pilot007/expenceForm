@@ -50,7 +50,9 @@
     <access origin="http://127.0.0.1*" />
     <access origin="http://cosmeticamobile.com*" />
     <access origin="*" />
-    
+	
+	<plugin name="Network Status" value="org.apache.cordova.network.Network" />
+		    
     <gap:platform name="ios">
     <gap:platform name="android">
     
