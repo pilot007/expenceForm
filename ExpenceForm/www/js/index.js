@@ -73,7 +73,7 @@ var app = {
 		  {
 		  	app.productList =a;
 		  	for (var i=0; i < a.length; i++) {
-		  	var o = new Option(a[i].Description,a[i].ID);
+		  	var o = new Option( a[i].Description.substring(1,10) ,a[i].ID);
 		  	$('#products').append(o);
 			  };
 		  	console.log("succ a " ,a);
