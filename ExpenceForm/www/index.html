@@ -25,24 +25,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0.min.css" />
+        
         <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
+        
         <script type="text/javascript" src="js/my.js"></script>
-        <title>Hello World</title>
+        <title></title>
     </head>
     <body>
-        <button onclick="app.detectCurrentLocation()">Detect Localtion</button>
-		<br/>
-        <button onclick="app.openCamera()">Open Camera</button>
-		<br/>
-        <button onclick="app.getProducts()">Get products</button>
-        <br/>
-        <select id="products" size="1">
-        	<option>Seçiniz</option>
-        </select> 
-        <div id="map" style="width=250px; height: 250px">
-        </div>
-        
-        <img src="" id="img1">
+
+        <div data-role="page">
+			<button id="btn_goMasraf">  Yeni Masraf Girişi </button>
+		</div>
+        <div data-role="page" id="page_Masraf">
+        	<form action="http://localhost:3448/api/costs/-1" type="PUT">
+			<label> Tarih </label>
+			<input type="date" id="COST_DATE" />
+
+			<label> Müşteri </label>
+			<select id="CUSTOMER_ID">   
+			<option>Seçiniz</option>
+			</select> 
+
+			<label> Proje </label>
+			<select id="PROJECT_ID">   
+			<option>Seçiniz</option>
+			</select> 
+
+
+			<label> Masraf Tipi </label>
+			<select id="COST_TYPE_ID">   
+			<option>Seçiniz</option>
+			</select> 
+
+			<label> Tutar </label>
+			<input type="text" id="COST_AMOUNT" />
+
+			<label> Açıklama </label>
+			<input type="text" id="DESCRIPTION" />
+		
+		<button id="btn_saveMasraf"> Kaydet </button>
+		</form>
+		</div>
+        <div data-role="page">
+			page3
+		</div>
+
+    
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
