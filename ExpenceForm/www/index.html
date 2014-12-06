@@ -23,29 +23,14 @@
   var flickerAPI = "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1";
   $.getJSON( flickerAPI, {
     format: "json"
-  })
+  });
   $.getJSON(flickerAPI, function(data) {
         console.log("myData");
         console.log(data);
         console.log(data[0]);
       $.each( data, function( i, item ) {
-      $("#images").append(item.company +"<br/>");
+      $("#images").append(item.from +"<br/>");
       $("#images").append("<a href=" +item.id + ">  "+item.subject+"<a/><br/>");
-      $("#images").append("<table class=style1>");
-      $("#images").append("<tr>");
-      $("#images").append("<td class=style2>");
-      $("#images").append("servis&gt;&gt;bakım</td>");
-      $("#images").append("<td class=style4>");
-      $("#images").append("sözleşmeli müşteri</td>");
-      $("#images").append("</tr> <tr>");
-      $("#images").append("<td class=style3 colspan=2>");
-      $("#images").append("Muhasebe server larında yavaşlık</td>");
-      $("#images").append("</tr> <tr>");
-      $("#images").append("<td class=style2>");
-      $("#images").append("GÜL Pano</td>");
-      $("#images").append("<td class=style4>");
-      $("#images").append("m.yeşilyurt--&gt; Devam ediyor</td>");
-      $("#images").append("</tr> </table>");
         });
       });
 })();
