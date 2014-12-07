@@ -67,13 +67,13 @@ var app = {
     {
 
     	$.ajax({
-		  url: "http://cosmeticamobile.com/Announcements.ashx",
+		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
 		  dataType: "jsonp",
 		  success:function(a,b,c)
 		  {
 		  	app.productList =a;
 		  	for (var i=0; i < a.length; i++) {
-		  	var o = new Option( a[i].Description.substring(1,10) ,a[i].ID);
+		  	var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	$('#products').append(o);
 			  };
 		  	console.log("succ a " ,a);
