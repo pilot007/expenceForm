@@ -37,17 +37,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-    	/*
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-*/
-		//loadMapScript('app.mapLoaded');
 		$("#device_info").append("UUID = " +device.uuid);
 		
 		checkConnection();
@@ -102,12 +91,24 @@ var app = {
 		  {
 		  	app.productList =a;
 		  	$("#div_liste").empty();
+		    $('#twitList ul').remove();
+            $('#twitList').append('<ul data-role="listview"></ul>');
+            listItems = $('#twitList').find('ul');
+
 		  	for (var i=0; i < a.length; i++) {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
 		  	
-		  	$("#div_liste").append("<li><a href=detay.html?id=" +a[i].id + ">  "+a[i].subject +"<a/> </li> ");
+
+            // Need to add UL on AJAX call or formatting of userlist is not displayed
+            
+		  	html = '<h1><a href="#">' + a[i].from + '</a></h1>';
+            html += + '<p>'+ a[i].subject + '</p>';
+            listItems.append('<li>' + html + '</li>');
+		  	//$("#twitList").append("<li><a href=detay.html?id=" +a[i].id + ">  "+a[i].subject +"<a/> </li> ");
 			};
+			$('#twitList ul').listview();
+
 			console.log("succ a " ,a);
 		  	console.log("succ b " ,b);
 		  	console.log("succ c " ,c);
