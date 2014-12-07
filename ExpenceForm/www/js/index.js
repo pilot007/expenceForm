@@ -47,7 +47,9 @@ var app = {
 
         console.log('Received Event: ' + id);
 */
-		loadMapScript('app.mapLoaded');
+		//loadMapScript('app.mapLoaded');
+		$("#device_info").append(device.uuid);
+		
 		checkConnection();
 		app.getProducts();
 		$('#products').bind('change', function(e) {
@@ -56,7 +58,7 @@ var app = {
 		var ind =e.currentTarget.selectedIndex-1;
 		var prod =app.productList[ind];
 		console.dir(prod);
-		$('#img1').attr('src',prod.ImageUrl );
+		$('#img1').attr('src',prod.ImageUrl);
 		});
     },
     
@@ -100,8 +102,9 @@ var app = {
 		  {
 		  	app.productList =a;
 		  	for (var i=0; i < a.length; i++) {
-		  	var o = new Option( a[i].from.substring(1,10) ,a[i].id);
-		  	$('#products').append(o);
+		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
+		  	//$('#products').append(o);
+		  	$("#div_liste").clear;
 		  	$("#div_liste").append("<a href=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
 			  };
 		  	console.log("succ a " ,a);
