@@ -105,15 +105,23 @@ var app = {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
 		  	$("#div_liste").empty();
-		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
+		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+		  	
+			a[i].subject
+		  	    .replace( "-1-","ı")
+		  	    .replace( "-2-","ş").replace("-22-","Ş")
+		  	    .replace("-33-","İ")
+				.replace("-4-","ö").replace("-44-","Ö")
+				.replace("-5-","ü").replace("-55-","Ü")
+				.replace("-6-","ç").replace("-66-","Ç")
+				.replace("-7-","ğ").replace( "-77-","Ğ")+"<a/><br/>");
 			var row = $(
             "<tr><td>servis&gt;&gt;bakım</td>"+
             "<td> sözleşmeli müşteri</td>"+
             "</tr><tr><td colspan=2>"+
-            +a[i].subject+"</td>"+
-            "</tr> <tr> <td>"+a[i].from+ "</td> <td>" +
+            +getTurkish(a[i].subject)+"</td>"+
+            "</tr> <tr> <td>"+getTurkish(a[i].from)+ "</td> <td>" +
             "m.yeşilyurt Devam ediyor</td></tr>");
-            $("#tbl").html(row.html());			  
+            //$("#tbl").html(row.html());			  
 		  	};
 			console.log("succ a " ,a);
 		  	console.log("succ b " ,b);
@@ -134,7 +142,7 @@ var app = {
     {
 
     	$.ajax({
-		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
+		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
 		  dataType: "json",
 		  success:function(a,b,c)
 		  {
@@ -143,13 +151,13 @@ var app = {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
 		  	$("#div_liste").empty();
-		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
+		  	//$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+getTurkish(a[i].subject)+"<a/><br/>");
 			var row = $(
             "<tr><td>servis&gt;&gt;bakım</td>"+
             "<td> sözleşmeli müşteri</td>"+
             "</tr><tr><td colspan=2>"+
-            +a[i].subject+"</td>"+
-            "</tr> <tr> <td>"+a[i].from+ "</td> <td>" +
+            +getTurkish(a[i].subject)+"</td>"+
+            "</tr> <tr> <td>"+getTurkish(a[i].from)+ "</td> <td>" +
             "m.yeşilyurt Devam ediyor</td></tr>");
             $("#tbl").html(row.html());			  
 		  	};
@@ -168,8 +176,15 @@ var app = {
 		});
     	
     },
-    getTurkish:function()
+    getTurkish:function(str)
     {
+		return str;
+		/*
+		.replace( "-1-","ı").replace( "-11-","I").replace( "-2-","ş").replace("-22-","Ş").replace("-33-","İ")
+				.replace("-4-","ö").replace("-44-","Ö")
+				.replace("-5-","ü").replace("-55-","Ü")
+				.replace("-6-","ç").replace("-66-","Ç")
+				.replace("-7-","ğ").replace( "-77-","Ğ");*/
 	},
 	openCamera : function() {
              var onCamSuccess = function(imageData) {
