@@ -85,6 +85,7 @@ var app = {
 		  	console.log("err a " ,a);
 		  	console.log("err b " ,b);
 		  	console.log("err c " ,c);
+		  	console.log("err c " ,c);
 		  	
 		  }
 		});
