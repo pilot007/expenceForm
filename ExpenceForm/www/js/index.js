@@ -48,7 +48,7 @@ var app = {
         console.log('Received Event: ' + id);
 */
 		//loadMapScript('app.mapLoaded');
-		$("#device_info").append(device.uuid);
+		$("#device_info").append("UUID = " +device.uuid);
 		
 		checkConnection();
 		app.getProducts();
@@ -104,10 +104,18 @@ var app = {
 		  	for (var i=0; i < a.length; i++) {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
-		  	$("#div_liste").clear;
-		  	$("#div_liste").append("<a href=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
-			  };
-		  	console.log("succ a " ,a);
+		  	$("#div_liste").empty();
+		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
+			var row = $(
+            "<tr><td>servis&gt;&gt;bakım</td>"+
+            "<td> sözleşmeli müşteri</td>"+
+            "</tr><tr><td colspan=2>"+
+            +a[i].subject+"</td>"+
+            "</tr> <tr> <td>"+a[i].from+ "</td> <td>" +
+            "m.yeşilyurt Devam ediyor</td></tr>");
+            $("#tbl").html(row.html());			  
+		  	};
+			console.log("succ a " ,a);
 		  	console.log("succ b " ,b);
 		  	console.log("succ c " ,c);
 		  	
@@ -121,7 +129,48 @@ var app = {
 		  }
 		});
     	
-    },	
+    },
+        getProductsall:function()
+    {
+
+    	$.ajax({
+		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
+		  dataType: "json",
+		  success:function(a,b,c)
+		  {
+		  	app.productList =a;
+		  	for (var i=0; i < a.length; i++) {
+		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
+		  	//$('#products').append(o);
+		  	$("#div_liste").empty();
+		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
+			var row = $(
+            "<tr><td>servis&gt;&gt;bakım</td>"+
+            "<td> sözleşmeli müşteri</td>"+
+            "</tr><tr><td colspan=2>"+
+            +a[i].subject+"</td>"+
+            "</tr> <tr> <td>"+a[i].from+ "</td> <td>" +
+            "m.yeşilyurt Devam ediyor</td></tr>");
+            $("#tbl").html(row.html());			  
+		  	};
+			console.log("succ a " ,a);
+		  	console.log("succ b " ,b);
+		  	console.log("succ c " ,c);
+		  	
+		  },
+		  error:function(a,b,c){
+		  	console.log("err a " ,a);
+		  	console.log("err b " ,b);
+		  	console.log("err c " ,c);
+		  	console.log("err c " ,c);
+		  	
+		  }
+		});
+    	
+    },
+    getTurkish:function()
+    {
+	},
 	openCamera : function() {
              var onCamSuccess = function(imageData) {
                     /* No action required */
