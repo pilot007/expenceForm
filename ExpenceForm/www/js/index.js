@@ -48,7 +48,6 @@ var app = {
         console.log('Received Event: ' + id);
 */
 		loadMapScript('app.mapLoaded');
-		
 		checkConnection();
 		app.getProducts();
 		$('#products').bind('change', function(e) {
@@ -103,6 +102,7 @@ var app = {
 		  	for (var i=0; i < a.length; i++) {
 		  	var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	$('#products').append(o);
+		  	$("#div_liste").append("<a href=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
 			  };
 		  	console.log("succ a " ,a);
 		  	console.log("succ b " ,b);
