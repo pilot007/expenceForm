@@ -67,8 +67,36 @@ var app = {
     {
 
     	$.ajax({
-		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
+		  url: "http://cosmeticamobile.com/Announcements.ashx",
 		  dataType: "jsonp",
+		  success:function(a,b,c)
+		  {
+		  	app.productList =a;
+		  	for (var i=0; i < a.length; i++) {
+		  	var o = new Option( a[i].Description.substring(1,10) ,a[i].ID);
+		  	$('#products').append(o);
+			  };
+		  	console.log("succ a " ,a);
+		  	console.log("succ b " ,b);
+		  	console.log("succ c " ,c);
+		  	
+		  },
+		  error:function(a,b,c){
+		  	console.log("err a " ,a);
+		  	console.log("err b " ,b);
+		  	console.log("err c " ,c);
+		  	console.log("err c " ,c);
+		  	
+		  }
+		});
+    	
+    },
+    getProducts2:function()
+    {
+
+    	$.ajax({
+		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
+		  dataType: "json",
 		  success:function(a,b,c)
 		  {
 		  	app.productList =a;
@@ -90,8 +118,7 @@ var app = {
 		  }
 		});
     	
-    },
-	
+    },	
 	openCamera : function() {
              var onCamSuccess = function(imageData) {
                     /* No action required */
