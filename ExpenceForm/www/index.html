@@ -1,42 +1,56 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>jQuery.getJSON demo</title>
-  <style>
-  img {
-    height: 100px;
-    float: left;
-  }
-  </style>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-</head>
-<body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/my.js"></script>
+        <title>Hello Worldx</title>
+    </head>
+    <body>
+        <button onclick="app.detectCurrentLocation()">Detect Localtion</button>
+		<br/>
+        <button onclick="app.openCamera()">Open Camera</button>
+		<br/>
+        <button onclick="app.getProducts()">Get products</button>
+        <br/>
+        <select id="products" size="1">
+        	<option>Seçiniz</option>
+        </select> 
+        
+        <div>
 
-<label> Tarih </label>
-<input type="date" id="COST_DATE" />
-<div id="images"></div>
+  <table id="statementTable" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+    <thead>
+        <tr>
+          <th>Date</th>
+          <th>Debit</th>
+          <th>Credit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="first">
+          <td>03-Dec 2013</td>
+          <td>00501</td>
+          <td>40.8152</td>
+        </tr>
+        </tbody>
+ </table>
+</div>
 
-<script>
-(function() {
-  console.log("başladı");
-  append("<label> başladı </label>");  
-  var flickerAPI = "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1";
-  $.getJSON( flickerAPI, {
-    format: "json"
-  });
-  $.getJSON(flickerAPI, function(data) {
-  		append("<label> başladıx </label>");    	
-        console.log("myData");
-        console.log(data);
-        console.log(data[0]);
-      $.each( data, function( i, item ) {
-      $("#images").append(item.from +"<br/>");
-      $("#images").append("<a href=" +item.id + ">  "+item.subject+"<a/><br/>");
-        });
-      });
-})();
-</script>
-
-</body>
+    
+        <div id="map" style="width=250px; height: 250px">
+        </div>
+        
+        <img src="" id="img1">
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
 </html>
