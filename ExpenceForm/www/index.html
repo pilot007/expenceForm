@@ -21,27 +21,91 @@
 <div data-role="page" id="page1">
     <div data-role="header">
         <h1>YESİS</h1>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >Benim</a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
+			      <li><a href="#yeni" data-ajax="false">Yeni</a></li>
+			    </ul>
+		      </div>        
     </div><!-- /header -->
-    <div data-role="content">
-        <div data-role="fieldcontain">            
-            <input type="button" name="searchButt" id="searchButt" value="Search" onclick="app.getProducts2()"/>
-        </div>
-            
-            <div data-role="content">    
-        <div id="twitList">
-                
-        </div>
-    </div><!-- /content -->
-    </div><!-- /content -->
-
     
 </div><!-- /page -->
-    	
     	<div id="device_info">
 		</div>
-    	         
+
+<div data-role="page" id="benim">
+    <div data-role="header">
+        <h1>YESİS</h1>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >Benim</a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
+			      <li><a href="#yeni" data-ajax="false">Yeni</a></li>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->	
+<div data-role="fieldcontain">            
+  <input type="button" name="searchButt" id="searchButt" value="Yenile" onclick="app.getProducts2()"/>
+</div>
+<div id="twitList">
+                
+</div>
+
 <div id="div_liste">
 </div>    
+</div>
+
+
+<div data-role="page" id="bekleyenler">
+    <div data-role="header">
+        <h1>YESİS</h1>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >Benim</a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
+			      <li><a href="#yeni" data-ajax="false">Yeni</a></li>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->	
+    BÜTÜN İŞLER
+<div id="twitList_all">
+                
+</div>
+<div id="div_liste_all">
+</div>    
+</div>
+
+
+<!-- Start of second page -->
+<div data-role="page" id="detay">
+    <div data-role="header">
+        <h1>YESİS</h1>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >Benim</a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
+			      <li><a href="#yeni" data-ajax="false">Yeni</a></li>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->
+    DETAYLAR
+</div><!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="yeni">
+    <div data-role="header">
+        <h1>YESİS</h1>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >Benim</a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
+			      <li><a href="#yeni" data-ajax="false">Yeni</a></li>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->
+    YENİ
+</div><!-- /page -->
         <div id="map" style="width=250px; height: 250px">
         </div>
         

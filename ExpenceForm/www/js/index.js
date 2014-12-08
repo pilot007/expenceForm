@@ -98,12 +98,11 @@ var app = {
 		  	for (var i=0; i < a.length; i++) {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
-		  	
 
             // Need to add UL on AJAX call or formatting of userlist is not displayed
             
-		  	html = '<h1><a href="#">' + a[i].from + '</a></h1>';
-            html += + '<p>'+ a[i].subject + '</p>';
+		  	html = '<h1><a href="#detay?id="'+a[i].id+'>' + a[i].from + '</a></h1>';
+            html += ' <p> '+ a[i].subject + '</p>';
             listItems.append('<li>' + html + '</li>');
 		  	//$("#twitList").append("<li><a href=detay.html?id=" +a[i].id + ">  "+a[i].subject +"<a/> </li> ");
 			};
@@ -128,17 +127,28 @@ var app = {
     {
 
     	$.ajax({
-		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities2?android_id=9feff6f179273142&jsonType=1",
+		  url: "http://85.97.120.30:9090/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
 		  dataType: "json",
 		  success:function(a,b,c)
 		  {
 		  	app.productList =a;
+		  	$("#div_liste_all").empty();
+		    $('#twitList_all ul').remove();
+            $('#twitList_all').append('<ul data-role="listview"></ul>');
+            listItems = $('#twitList_all').find('ul');
+
 		  	for (var i=0; i < a.length; i++) {
 		  	//var o = new Option( a[i].from.substring(1,10) ,a[i].id);
 		  	//$('#products').append(o);
-		  	$("#div_liste").empty();
-		  	$("#div_liste").append("<a href=#employees/id=" +a[i].id + ">  "+a[i].subject+"<a/><br/>");
-		  	};
+
+            // Need to add UL on AJAX call or formatting of userlist is not displayed
+            
+		  	html = '<h1><a href="#detay?id="'+a[i].id+'>' + a[i].from + '</a></h1>';
+            html += ' <p> '+ a[i].subject + '</p>';
+            listItems.append('<li>' + html + '</li>');
+		  	//$("#twitList").append("<li><a href=detay.html?id=" +a[i].id + ">  "+a[i].subject +"<a/> </li> ");
+			};
+			$('#twitList_all ul').listview();
 			console.log("succ a " ,a);
 		  	console.log("succ b " ,b);
 		  	console.log("succ c " ,c);
