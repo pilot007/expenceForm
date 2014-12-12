@@ -27,6 +27,18 @@ var app = {
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents : function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
+		console.log('device.uuid:' + device.uuid);
+		$("#device_info").append( 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />' );
+		
+		$("#device_info").append( '<br />'+  '<br />' +  '<br />');
+		$("#device_info").append('Bana Atananlar : '+ '<br />');
+		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
+		$("#device_info").append('Diğer atanan işler : '+ '<br />');
+                            
 	},
 	// deviceready Event Handler
 	//
@@ -38,7 +50,6 @@ var app = {
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		$("#device_info").append("UUID = " + device.uuid);
-
 		checkConnection();
 		app.getProducts();
 		$('#products').bind('change', function(e) {
@@ -182,6 +193,7 @@ var app = {
 				listItems = $('#twitList_detay').find('ul');
 
 				for (var i = 0; i < a.length; i++) {
+					app.activity_type_id=a[i].activity_id;
 					html = a[i].project_id +'<br/>'+  
 					a[i].company_name +'<br/>';
 					 
@@ -189,26 +201,9 @@ var app = {
 					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + a[i].project_desc  +' </textarea><br/>';
 				};
 				//$('#twitList_detay').append(html);
-				app.getPersonel(html );
+				app.getPersonel(html ,'twitList_detay');
+				app.getActivityPropertyStatus(html,'twitList_yeni');
 				$('#twitList_detay ul').listview();
-/*				
-					<select id="sel_personels">
-    					<option value="">Please select an option below</option>
-    				</select>
-    				
-    				
-    				$('select').val('');
-    				$("#target").val(null);
-    				
-    				$('select').each(function(){
-    				$(this).find('option:first').prop('selected', 'selected');
-    
-    				jQuerySelectObject.val(jQuerySelectObject.children().eq(0).val());
-    				
-    				$( "#myselect" ).val();
-    				
-});
-*/				
 			},
 			error : function(a, b, c) {
 				console.log("err a ", a);
@@ -220,43 +215,32 @@ var app = {
 		});
 
 	},
-	getPersonel : function(html) {
+	getYeni : function() {
+		console.log("getYeni:");
+				$('#twitList_yeni').empty();
+				$('#twitList_yeni ul').remove();
+				$('#twitList_yeni').append('<ul data-role="listview"></ul>');
+				listItems = $('#twitList_yeni').find('ul');
+				app.getPersonel(html,'twitList_yeni');
+				app.getCustomer(html,'twitList_yeni');				
+				//$('#twitList_yeni').append('<button type="button" onclick="app.savefunc();">kaydet</button>');
+				$('#twitList_yeni ul').listview();		
+	},
+	
+	getPersonel : function(html,div_name) {
 		console.log("getPersonel:");
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=employee",
 			dataType : "json",
-			success : function(a, b, c) {				
-				console.log("getProductsDetayx:", app.id);
-				console.log(a);
-				$('#twitList_detay ul').remove();
-				listItems = $('#twitList_detay');
-
+			success : function(a, b, c) {
 				html +='<select id="sel_personels">';
-				for (var i = 0; i < a.length; i++) {
+				for (var i = 0; i < a.length; i++) 
+				{
 					html += '<option value="'+a[i].user_id+'">'+a[i].user_name+'</option>';
 				};
 				html +='</select> <br/>';
-				html += '<button type="button" onclick="app.savefunc();">kaydet</button>';
-				$('#twitList_detay').append(html);
-				$('#twitList_detay ul').listview();
-/*				
-					<select id="sel_personels">
-    					<option value="">Please select an option below</option>
-    				</select>
-    				
-    				
-    				$('select').val('');
-    				$("#target").val(null);
-    				
-    				$('select').each(function(){
-    				$(this).find('option:first').prop('selected', 'selected');
-    
-    				jQuerySelectObject.val(jQuerySelectObject.children().eq(0).val());
-    				
-    				$( "#myselect" ).val();
-    				
-});
-*/
+				$('#'+div_name).append(html);
+				$('#sel_personels').val('');
 	},
 			error : function(a, b, c) {
 				console.log("err a ", a);
@@ -268,6 +252,111 @@ var app = {
 		});
 
 	},
+	getActivity : function(html,div_name) {
+		console.log("getPersonel:");
+		$.ajax({
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytype",
+			dataType : "json",
+			success : function(a, b, c) {				
+				console.log("getProductsDetayx:", app.id);
+				
+				html +='<select id="sel_activity">';
+				for (var i = 0; i < a.length; i++) {
+					html += '<option value="'+a[i].activity_id+'">'+a[i].activity_name+'</option>';
+				};
+				html +='</select> <br/>';
+				$('#'+div_name).append(html);
+				$('#sel_activity').val('');
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+
+			}
+		});
+
+	},	
+	getActivityProperty : function(html,div_name) {
+		console.log("getPersonel:");
+		$.ajax({			
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytype&activity_type_id="+app.activity_type_id,
+			dataType : "json",
+			success : function(a, b, c) {				
+				console.log("getProductsDetayx:", app.id);
+
+				html +='<select id="sel_activity">';
+				for (var i = 0; i < a.length; i++) {
+					html += '<option value="'+a[i].activity_id+'">'+a[i].activity_name+'</option>';
+				};
+				html +='</select> <br/>';
+				$('#'+div_name).append(html);
+				//$('#'+div_name+' ul').listview();
+				$('#sel_activity').val('');
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+
+			}
+		});
+
+	},
+	getActivityPropertyStatus : function(html,div_name) {
+		console.log("gets Prop Satus:" + app.activity_type_id);
+		
+		$.ajax({			
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id="+app.activity_type_id,
+			dataType : "json",
+			success : function(a, b, c) {				
+				console.log("getProductsDetayx:", app.id);
+
+				html +='<select id="sel_activity">';
+				for (var i = 0; i < a.length; i++) {
+					html += '<option value="'+a[i].activity_status_id+'">'+a[i].activity_status_name+'</option>';
+				};
+				html +='</select> <br/>';
+				$('#'+div_name).append(html);
+				//$('#'+div_name+' ul').listview();
+				$('#sel_activity').val('');
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+
+			}
+		});
+
+	},			
+	getCustomer : function(html, div_name) {
+		console.log("getCustomer:");
+		$.ajax({
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=customer",
+			dataType : "json",
+			success : function(a, b, c) {				
+				html ='Müşteri : <select id="sel_customer" style="width: 368px;">';
+				for (var i = 0; i < a.length; i++) {
+					html += '<option value="'+a[i].company_id+'" >'+a[i].company_name+'</option>';
+				};
+				html +='</select> <br/>';
+				$('#'+div_name).append(html);
+				$('#sel_customer').val('');
+	},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+
+			}
+		});
+
+	},	
 	getTurkish : function(str) {
 		return str;
 		/*
