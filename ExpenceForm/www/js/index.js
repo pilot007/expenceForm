@@ -27,17 +27,6 @@ var app = {
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents : function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
-		console.log('device.uuid:' + device.uuid);
-		$("#device_info").append( 'Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />' );
-		
-		$("#device_info").append( '<br />'+  '<br />' +  '<br />');
-		$("#device_info").append('Bana Atananlar : '+ '<br />');
-		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
-		$("#device_info").append('Diğer atanan işler : '+ '<br />');
                             
 	},
 	// deviceready Event Handler
@@ -63,7 +52,50 @@ var app = {
 	},
 
 	productList : null,
+	first_init : function(){
+		
+		$("#device_info").append( 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />' );
+		
+		$("#device_info").append( '<br />'+  '<br />' +  '<br />');
+		$("#device_info").append('Bana Atananlar : '+ '<br />');
+		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
+		$("#device_info").append('Diğer atanan işler : '+ '<br />');
 
+		
+		$.ajax({			
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id=2",
+			dataType : "json",
+			success : function(a, b, c) {
+			app.status=a;
+			console.log('status');
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		
+		$.ajax({
+			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=employee",
+			dataType : "json",
+			success : function(a, b, c) {
+			app.personels=a;
+			console.log('personel');
+	},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+	},
 	getProducts : function() {
 
 		$.ajax({
@@ -176,18 +208,36 @@ var app = {
 	
 	savefunc : function() {
 		console.log("save func");
-		alert("save func");
+		var result= $("#sel_personels option:selected").val();
+		var result2= $("#sel_status option:selected").val();
+		alert("save func result:" + result + "result:" + result2);
+		
 	},
 	getProductsDetay : function(id) {
 		app.id=id;		
 		console.log("getProductsDetay:", app.id);
+
+/*
+$.when(
+		$.get("http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=getactivity&activity_type_id=" + app.id, {},
+		  function(data){
+		    alert("Data Loaded: " + data);
+		  }
+		 ).then(function( data, textStatus, jqXHR ) {
+  //alert( jqXHR.status ); // Alerts 200
+})
+);*/
+		  
+		$.when(  
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=getactivity&activity_type_id=" + app.id,
 			dataType : "json",
 			success : function(a, b, c) {
-				$.mobile.changePage($('#detay'));
+			var detays=[];
+			app.detays=a;
+
+				/*$.mobile.changePage($('#detay'));
 				console.log("getProductsDetayx:", app.id);
-				console.log(a);
 				$('#twitList_detay').empty();
 				$('#twitList_detay').append('<ul data-role="listview"></ul>');
 				listItems = $('#twitList_detay').find('ul');
@@ -199,6 +249,7 @@ var app = {
                  * "activity_status_id": "9","activity_status": "Tamamlandı",
                  * "project_desc": "Cengiz Bey internete giremiyor bilg. ip almıyor",
                  * "assigned_id": "10","assigned_person": "Operasyon null"} ]*/
+                /*
                 v_activity_status_id='';
                 v_assigned_id='';
 				for (var i = 0; i < a.length; i++) {
@@ -210,22 +261,87 @@ var app = {
 					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + a[i].project_desc  +' </textarea><br/>';
 				};
 				//$('#twitList_detay').append(html);
-				app.getPersonel(html ,'twitList_detay');
-				app.getActivityPropertyStatus(html,'twitList_detay');
-				$('#sel_activity_status').val(v_activity_status_id);
-				$('#sel_personels').val(v_assigned_id);
+				app.html=html;
+				app.getPersonel(app.html ,'twitList_detay');
+				app.getActivityPropertyStatus(app.html,'twitList_detay');
 				
+				console.log("v_activity_status_id ", v_activity_status_id);
+				console.log("v_assigned_id ", v_assigned_id);
+				console.log("app.html ", app.html);
+				//$('#twitList_detay').append(app.html);
 				$('#twitList_detay ul').listview();
-			},
+				*/
+				
+			}			,
 			error : function(a, b, c) {
 				console.log("err a ", a);
 				console.log("err b ", b);
 				console.log("err c ", c);
 				console.log("err c ", c);
 
-			}
-		});
+			},
+     		complete: function( xhr, status ) {
+        	//alert( "1. The request is complete!" );
+    	}
+			}).then(function( data, textStatus, jqXHR ) {
+  //alert( jqXHR.status ); // Alerts 200
 
+				$.mobile.changePage($('#detay'));
+				console.log("getProductsDetayx:", app.id);
+				$('#twitList_detay').empty();
+				$('#twitList_detay').append('<ul data-role="listview"></ul>');
+				listItems = $('#twitList_detay').find('ul');
+				
+				for (var i = 0; i < app.detays.length; i++) {
+					app.activity_type_id=app.detays[i].activity_id;
+					html = app.detays[i].project_id +'<br/>'+  
+					app.detays[i].company_name +'<br/>';
+					v_activity_status_id=app.detays[i].activity_status_id;
+					v_assigned_id=app.detays[i].assigned_id;  
+					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + app.detays[i].project_desc  +' </textarea><br/>';
+				};
+
+				html +='<br/>'+'Personel : <select id="sel_personels" >';
+				$('#sel_personels').prop(v_assigned_id);
+				$('#sel_personels').val(v_assigned_id).selectmenu('refresh', true);
+				for (var i = 0; i < app.personels.length; i++) 
+				{
+					if (v_assigned_id==app.personels[i].user_id) 
+					{
+						html += '<option selected="true" value="'+app.personels[i].user_id+'">'+app.personels[i].user_name+'</option>';
+					} 
+					else
+					{
+						html += '<option value="'+app.personels[i].user_id+'">'+app.personels[i].user_name+'</option>';
+					};
+				};
+				html +='</select> <br/>';
+				
+				html +='<br/>'+' Statüs : <select id="sel_status" >';
+				$('#sel_status').prop(v_activity_status_id);
+				$('#sel_status').val(v_activity_status_id).selectmenu('refresh', true);
+
+				for (var i = 0; i < app.status.length; i++) 
+				{
+					if (v_activity_status_id==app.status[i].activity_status_id) 
+					{
+						html += '<option selected="true" value="'+app.status[i].activity_status_id+'">'+app.status[i].activity_status_name+'</option>';
+					}
+					else
+					{
+						html += '<option value="'+app.status[i].activity_status_id+'">'+app.status[i].activity_status_name+'</option>';
+					}
+				};
+				html +='</select> <br/>';
+			    html +='<input type="button" name="save" id="save" value="Kaydet" onclick="app.savefunc()"/>';
+
+				$('#twitList_detay').append(html);				
+				console.log("v_activity_status_id ", v_activity_status_id);
+				console.log("v_assigned_id ", v_assigned_id);
+				console.log("app.html ", app.html);
+				//$('#twitList_detay').append(app.html);
+				$('#twitList_detay ul').listview();
+		}));
 	},
 	getYeni : function() {
 		console.log("getYeni:");
@@ -251,18 +367,18 @@ var app = {
 					html += '<option value="'+a[i].user_id+'">'+a[i].user_name+'</option>';
 				};
 				html +='</select> <br/>';
-				$('#'+div_name).append(html);
-				$('#sel_personels').val('');
+				app.html=html;
+				$('#'+div_name).append(app.html	);
+				//$('#sel_personels').val('');
+				
 	},
 			error : function(a, b, c) {
 				console.log("err a ", a);
 				console.log("err b ", b);
 				console.log("err c ", c);
 				console.log("err c ", c);
-
 			}
-		});
-
+		});		
 	},
 	getActivity : function(html,div_name) {
 		console.log("getPersonel:");
@@ -312,10 +428,8 @@ var app = {
 				console.log("err b ", b);
 				console.log("err c ", c);
 				console.log("err c ", c);
-
 			}
 		});
-
 	},
 	getActivityPropertyStatus : function(html,div_name) {
 		console.log("gets Prop Satus:" + app.activity_type_id);
@@ -326,24 +440,24 @@ var app = {
 			success : function(a, b, c) {				
 				console.log("sel_activity_status");
 
-				html +='<select id="sel_activity_status">';
+				html +='Durum : <select id="sel_activity_status">';
 				for (var i = 0; i < a.length; i++) {
 					html += '<option value="'+a[i].activity_status_id+'">'+a[i].activity_status_name+'</option>';
 				};
 				html +='</select> <br/>';
-				$('#'+div_name).append(html);
-				//$('#'+div_name+' ul').listview();
-				$('#sel_activity_status').val('');
+				//$('#'+div_name).append(html);				
+				console.log("statsu html :" + html);
+				app.html=html;
+				console.log("statsu html :" + app.html);
+				$('#'+div_name).append(app.html	);
 			},
 			error : function(a, b, c) {
 				console.log("err a ", a);
 				console.log("err b ", b);
 				console.log("err c ", c);
 				console.log("err c ", c);
-
 			}
 		});
-
 	},			
 	getCustomer : function(html, div_name) {
 		console.log("getCustomer:");
@@ -459,6 +573,7 @@ var app = {
 		}
 	} */
 };
+
 /*
 $("a").live("click", function(e) {
 	v_url = $(this).attr("href");
