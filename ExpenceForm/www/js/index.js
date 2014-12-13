@@ -59,7 +59,7 @@ var app = {
                             'Device Platform: ' + device.platform + '<br />' + 
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />' );
-		alert(device.name  +'  '+ device.uuid);
+		
 		$("#device_info").append( '<br />'+  '<br />' +  '<br />');
 		$("#device_info").append('Bana Atananlar : '+ '<br />');
 		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
@@ -122,7 +122,7 @@ var app = {
 
 	},
 	getProducts2 : function() {
-		alert(device.name  +'  '+ device.uuid);
+		
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
 			dataType : "json",
@@ -164,7 +164,7 @@ var app = {
 
 	},
 	getProductsall : function() {
-		alert(device.name  +'  '+ device.uuid);
+		
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
 			dataType : "json",
@@ -209,7 +209,7 @@ var app = {
 		console.log("save func");
 		var result= $("#sel_personels option:selected").val();
 		var result2= $("#sel_status option:selected").val();
-		alert("save func result:" + result + "result:" + result2);
+		//alert("save func result:" + result + "result:" + result2);
 		
 	},
 	getProductsDetay : function(id) {
@@ -226,7 +226,7 @@ $.when(
   //alert( jqXHR.status ); // Alerts 200
 })
 );*/
-		alert( 'başladı' ); // Alerts 200  
+		
 		$.when(  
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=getactivity&activity_type_id=" + app.id,
@@ -283,7 +283,7 @@ $.when(
         	//alert( "1. The request is complete!" );
     	}
 			}).then(function( data, textStatus, jqXHR ) {
-  alert( jqXHR.status ); // Alerts 200
+  //alert( jqXHR.status ); // Alerts 200
 
 				$.mobile.changePage($('#detay'));
 				console.log("getProductsDetayx:", app.id);
