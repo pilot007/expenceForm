@@ -1,17 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.gtech.expenceform" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ExpencesForm</name>
+    <name>YESİS MOBILE CRM</name>
     <description>
-        Masraf yönetim sistemi
+        .
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        .
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="http://api.phonegap.com/1.0/network" />
     <feature name="http://api.phonegap.com/1.0/camera" />
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
+	<plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
     
     
     <preference name="permissions" value="none" />

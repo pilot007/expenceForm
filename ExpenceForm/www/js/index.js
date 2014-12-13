@@ -192,17 +192,29 @@ var app = {
 				$('#twitList_detay').append('<ul data-role="listview"></ul>');
 				listItems = $('#twitList_detay').find('ul');
 
+                /*[{ "project_id": "3000","company_id": "42",
+                 * "company_name": "baysallbaysallar uluslararasi nakliyat tic sanayi a.ş ",
+                 * "activity_id": "2","activity_name": "Servis",
+                 * "activity_property_id": "2","activity_property_name": "Helpdesk",
+                 * "activity_status_id": "9","activity_status": "Tamamlandı",
+                 * "project_desc": "Cengiz Bey internete giremiyor bilg. ip almıyor",
+                 * "assigned_id": "10","assigned_person": "Operasyon null"} ]*/
+                v_activity_status_id='';
+                v_assigned_id='';
 				for (var i = 0; i < a.length; i++) {
 					app.activity_type_id=a[i].activity_id;
 					html = a[i].project_id +'<br/>'+  
 					a[i].company_name +'<br/>';
-					 
-					  
+					v_activity_status_id=a[i].activity_status_id;
+					v_assigned_id=a[i].assigned_id;  
 					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + a[i].project_desc  +' </textarea><br/>';
 				};
 				//$('#twitList_detay').append(html);
 				app.getPersonel(html ,'twitList_detay');
-				app.getActivityPropertyStatus(html,'twitList_yeni');
+				app.getActivityPropertyStatus(html,'twitList_detay');
+				$('#sel_activity_status').val(v_activity_status_id);
+				$('#sel_personels').val(v_assigned_id);
+				
 				$('#twitList_detay ul').listview();
 			},
 			error : function(a, b, c) {
@@ -312,16 +324,16 @@ var app = {
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id="+app.activity_type_id,
 			dataType : "json",
 			success : function(a, b, c) {				
-				console.log("getProductsDetayx:", app.id);
+				console.log("sel_activity_status");
 
-				html +='<select id="sel_activity">';
+				html +='<select id="sel_activity_status">';
 				for (var i = 0; i < a.length; i++) {
 					html += '<option value="'+a[i].activity_status_id+'">'+a[i].activity_status_name+'</option>';
 				};
 				html +='</select> <br/>';
 				$('#'+div_name).append(html);
 				//$('#'+div_name+' ul').listview();
-				$('#sel_activity').val('');
+				$('#sel_activity_status').val('');
 			},
 			error : function(a, b, c) {
 				console.log("err a ", a);
