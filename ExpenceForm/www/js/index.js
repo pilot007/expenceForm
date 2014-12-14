@@ -134,7 +134,7 @@ var app = {
 				listItems = $('#twitList').find('ul');
 
 				for (var i = 0; i < a.length; i++) {
-					html = '<h1><a id="prj_' + a[i].id + '" >' + a[i].from + '</a></h1>';
+					html = '<h1><a id="prj_' + a[i].id + '" >' +device.uuid  +'  '+ a[i].from + '</a></h1>';
 					html += ' <p> ' + a[i].subject + '</p>';
 					listItems.append('<li>' + html + '</li>');
 				};
@@ -279,9 +279,6 @@ $.when(
 				console.log("err c ", c);
 
 			},
-     		complete: function( xhr, status ) {
-        	//alert( "1. The request is complete!" );
-    	}
 			}).then(function( data, textStatus, jqXHR ) {
   //alert( jqXHR.status ); // Alerts 200
 
@@ -300,9 +297,8 @@ $.when(
 					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + app.detays[i].project_desc  +' </textarea><br/>';
 				};
 
+				if(app.status!=null){
 				html +='<br/>'+'Personel : <select id="sel_personels" >';
-				$('#sel_personels').prop(v_assigned_id);
-				$('#sel_personels').val(v_assigned_id).selectmenu('refresh', true);
 				for (var i = 0; i < app.personels.length; i++) 
 				{
 					if (v_assigned_id==app.personels[i].user_id) 
@@ -315,11 +311,10 @@ $.when(
 					};
 				};
 				html +='</select> <br/>';
+				}
 				
+				if(app.status!=null){
 				html +='<br/>'+' Statüs : <select id="sel_status" >';
-				$('#sel_status').prop(v_activity_status_id);
-				$('#sel_status').val(v_activity_status_id).selectmenu('refresh', true);
-
 				for (var i = 0; i < app.status.length; i++) 
 				{
 					if (v_activity_status_id==app.status[i].activity_status_id) 
@@ -332,6 +327,7 @@ $.when(
 					}
 				};
 				html +='</select> <br/>';
+				}
 			    html +='<input type="button" name="save" id="save" value="Kaydet" onclick="app.savefunc()"/>';
 
 				$('#twitList_detay').append(html);				
