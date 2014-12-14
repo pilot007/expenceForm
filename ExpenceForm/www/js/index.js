@@ -53,18 +53,11 @@ var app = {
 
 	productList : null,
 	first_init : function(){
-		$.mobile.changePage($('#page1'));
-		$("#device_info").append( 'Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />' );
-		
-		$("#device_info").append( '<br />'+  '<br />' +  '<br />');
 		$("#device_info").append('Bana Atananlar : '+ '<br />');
 		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
 		$("#device_info").append('Diğer atanan işler : '+ '<br />');
 		$("#device_info").listview();				
+		if(app.status==null){
 		$.ajax({			
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id=2",
 			dataType : "json",
@@ -79,7 +72,9 @@ var app = {
 				console.log("err c ", c);
 			}
 		});
+		}
 		
+		if(app.personels==null){
 		$.ajax({
 			url : "http://85.97.120.30:9090/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=employee",
 			dataType : "json",
@@ -94,6 +89,7 @@ var app = {
 				console.log("err c ", c);
 			}
 		});
+		}
 	},
 	getProducts : function() {
 
@@ -134,7 +130,7 @@ var app = {
 				listItems = $('#twitList').find('ul');
 
 				for (var i = 0; i < a.length; i++) {
-					html = '<h1><a id="prj_' + a[i].id + '" >' +device.uuid  +'  '+ a[i].from + '</a></h1>';
+					html = '<h1><a id="prj_' + a[i].id + '" >'+ a[i].from + '</a></h1>';
 					html += ' <p> ' + a[i].subject + '</p>';
 					listItems.append('<li>' + html + '</li>');
 				};
@@ -213,7 +209,8 @@ var app = {
 		
 	},
 	getProductsDetay : function(id) {
-		app.id=id;		
+		app.id=id;	
+		app.first_init();	
 		console.log("getProductsDetay:", app.id);
 
 /*
