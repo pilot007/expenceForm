@@ -4,13 +4,14 @@ var app = {
 		this.bindEvents();
 		app.url="http://85.97.120.30:9090";
 		//app.url="http://127.0.0.1:9090";
+		app.first_init();
 	},
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents : function() {
-		document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener('deviceready', this.onDeviceReady, true);
                             
 	},
 	// deviceready Event Handler
@@ -19,19 +20,11 @@ var app = {
 	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
+		app.first_init();
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		checkConnection();
-		app.getProducts();
-		$('#products').bind('change', function(e) {
-			console.log(e);
-			console.log(e.currentTarget.value);
-			var ind = e.currentTarget.selectedIndex - 1;
-			var prod = app.productList[ind];
-			console.dir(prod);
-			$('#img1').attr('src', prod.ImageUrl);
-		});
 	},
 
 	productList : null,
@@ -46,16 +39,37 @@ var app = {
 	},
 	first_init : function(){
 		var element = document.getElementById('deviceProperties');
+   	    var element2 = document.getElementById('deviceProperties2');
+
 		 element.innerHTML = 'Device Model: '    + app.isnull(device.model)    + '<br />' +
                             'Device UUID: '     + app.isnull(device.uuid)     + '<br />' +
-                            'Device UUID: '     + app.isnull(device.name)     + '<br />' +
                             'Device Version: '  + app.isnull(device.version)  + '<br />';		
 		
 		$("#deviceProperties2").append("UUID = " + app.isnull(device.uuid));
-
+	
 		$("#device_info").append('Bana Atananlar : '+ '<br />');
 		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
 		$("#device_info").append('Diğer atanan işler : '+ '<br />');
+
+		if(app.status==null){
+		$.ajax({			
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+"9feff6f179273142"+"&jsonType=1&con_type=getUserName",
+			dataType : "json",
+			success : function(a, b, c) {
+				for (var i = 0; i < a.length; i++) {
+					element2.innerHTML = a[i].user_name;		
+				};
+			
+			console.log('status');
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		}
 						
 		if(app.status==null){
 		$.ajax({			
