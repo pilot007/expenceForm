@@ -13,6 +13,7 @@
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
 	<plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
+	<gap:plugin name="org.apache.cordova.device" />
     
     
     <preference name="permissions" value="none" />

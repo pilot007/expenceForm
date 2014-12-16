@@ -38,18 +38,25 @@ var app = {
 	getMusteriler : function(){
 	
 	},
+	isnull : function(p){
+		if (p ==null)
+		return '.';
+		else
+		return p;
+	},
 	first_init : function(){
 		var element = document.getElementById('deviceProperties');
-        element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-                            'Device UUID: '     + device.uuid     + '<br />' +
-                            'Device Version: '  + device.version  + '<br />';		
+		 element.innerHTML = 'Device Model: '    + app.isnull(device.model)    + '<br />' +
+                            'Device UUID: '     + app.isnull(device.uuid)     + '<br />' +
+                            'Device UUID: '     + app.isnull(device.name)     + '<br />' +
+                            'Device Version: '  + app.isnull(device.version)  + '<br />';		
 		
-		$("#deviceProperties2").append("UUID = " + device.uuid);
+		$("#deviceProperties2").append("UUID = " + app.isnull(device.uuid));
 
 		$("#device_info").append('Bana Atananlar : '+ '<br />');
 		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
 		$("#device_info").append('Diğer atanan işler : '+ '<br />');
-		$("#device_info").listview();				
+						
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id=2",
