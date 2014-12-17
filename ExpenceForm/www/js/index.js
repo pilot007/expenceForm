@@ -41,7 +41,7 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		app.uuid="A2468456-B8A1-479D-B575-01CA8ADC660F";
+		//app.uuid="A2468456-B8A1-479D-B575-01CA8ADC660F";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
