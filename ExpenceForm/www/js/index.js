@@ -53,7 +53,7 @@ var app = {
 
 		if(app.status==null){
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+"9feff6f179273142"+"&jsonType=1&con_type=getUserName",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.isnull(device.uuid)+"&jsonType=1&con_type=getUserName",
 			dataType : "json",
 			success : function(a, b, c) {
 				for (var i = 0; i < a.length; i++) {
