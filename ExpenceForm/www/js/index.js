@@ -35,7 +35,8 @@ var app = {
 	},
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
-		//app.uuid="";
+		if (app.uuid==".")
+		app.uuid="0EE401AA-6EAE-4D13-99C0-57C473CBEC82";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
@@ -209,14 +210,16 @@ var app = {
 		console.log("save func");
 		var result= $("#sel_personels option:selected").val();
 		var result2= $("#sel_status option:selected").val();
-
-		if(app.status==null){
+		var desc= $("#comment").text();
+		//if(app.status==null)
+		{
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=updateactivity&temp_activity_type_id=2&temp_status_id=2&temp_assignto=2&desc=dfdf",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=updateactivity&temp_activity_type_id="+app.id+"&temp_status_id="+result2+"&temp_assignto="+result + "&desc=" + comment,
 			dataType : "json",
 			success : function(a, b, c) {
-			app.status=a;
-			console.log('status');
+			app.status=a;			
+			$.mobile.changePage($('#page1'));
+			app.getProducts2();
 			},
 			error : function(a, b, c) {
 				console.log("err a ", a);
@@ -320,7 +323,7 @@ $.when(
 					app.detays[i].company_name +'<br/>';
 					v_activity_status_id=app.detays[i].activity_status_id;
 					v_assigned_id=app.detays[i].assigned_id;  
-					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + app.detays[i].project_desc  +' </textarea><br/>';
+					html += ' <textarea id="comment" style="margin: 0px; width: 250px; height: 98px;">' + app.detays[i].project_desc  +' </textarea><br/>';
 				};
 
 				if(app.status!=null){
