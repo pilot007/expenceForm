@@ -46,22 +46,15 @@ var app = {
 		$("#device_info").append('Diğer atanan işler : '+ '<br />');
 		$("#device_info").append('app.uuid : '+app.uuid+ '<br />');
 		app.uuid = app.isnull(device.uuid);
+		//app.uuid="911F40E7-E528-454A-917D-5CC01367B05F";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
 			dataType : "json",
 			success : function(a, b, c) {
-				$("#device_info").append('başarılı oldu '+ '<br />');
 				$("#device_info").append('başarılı oldu size : '+ a.length+'<br />');
-				$("#device_info").append(a);
-				element2.innerHTML = "username:" + a.length ;
-				for (var i = 0; i < a.length; i++) {
-					element2.innerHTML = a[i].user_name;
-					app.username = a[i].user_name;
-					$("#device_info").append('a[i].user_name : '+a[i].user_name+ '<br />');
-				};
-			$("#device_info").append('bitti '+ '<br />');
-			console.log('status');
+				app.username = a[0].user_name;
+				$("#device_info").append('app.username : '+app.username+ '<br />');
 			},
 			error : function(a, b, c) {
 				$("#device_info").append('hata aldı '+ '<br />');
@@ -136,7 +129,9 @@ var app = {
 
 	},
 	getProducts2 : function() {
-		
+		$("#username").empty();
+		$("#username").append(app.username);
+
 		$.ajax({
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
 			dataType : "json",
@@ -149,7 +144,7 @@ var app = {
 
 				for (var i = 0; i < a.length; i++) {
 					html = '<h1><a id="prj_' + a[i].id + '" >'+ a[i].from + '</a></h1>';
-					html += ' <p> ' + app.username +" " + app.uuid+ " </br> " + a[i].subject + '</p>';
+					html += ' <p> ' + a[i].subject + '</p>';
 					listItems.append('<li>' + html + '</li>');
 				};
 				$('#twitList ul').listview();
@@ -178,7 +173,8 @@ var app = {
 
 	},
 	getProductsall : function() {
-		
+		$("#usernameb").empty();
+		$("#usernameb").append(app.username);		
 		$.ajax({
 			url : app.url+"/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
 			dataType : "json",
@@ -250,6 +246,8 @@ var app = {
 		
 	},
 	getProductsDetay : function(id) {
+		$("#usernamed").empty();
+		$("#usernamed").append(app.username);		
 		app.id=id;	
 		app.first_init();	
 		console.log("getProductsDetay:", app.id);
