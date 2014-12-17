@@ -4,7 +4,7 @@ var app = {
 		this.bindEvents();
 		app.url="http://85.97.120.30:9090";
 		//app.url="http://127.0.0.1:9090";
-		app.first_init();
+		//app.first_init();
 	},
 	// Bind Event Listeners
 	//
@@ -16,7 +16,7 @@ var app = {
 	},
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
-		app.first_init();
+		//app.first_init();
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
