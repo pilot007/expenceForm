@@ -34,27 +34,17 @@ var app = {
 		return p;
 	},
 	first_init : function(){
-		var element = document.getElementById('deviceProperties');
-   	    var element2 = document.getElementById('deviceProperties2');
-
-		 element.innerHTML = 'Device Model: '    + app.isnull(device.model)    + '<br />' +
-                            'Device UUID: '     + app.isnull(device.uuid)     + '<br />' +
-                            'Device Version: '  + app.isnull(device.version)  + '<br />';		
-		
-		$("#device_info").append('Bana Atananlar : '+ '<br />');
-		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
-		$("#device_info").append('Diğer atanan işler : '+ '<br />');
-		$("#device_info").append('app.uuid : '+app.uuid+ '<br />');
 		app.uuid = app.isnull(device.uuid);
-		//app.uuid="911F40E7-E528-454A-917D-5CC01367B05F";
+		//app.uuid="";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
 			dataType : "json",
 			success : function(a, b, c) {
-				$("#device_info").append('başarılı oldu size : '+ a.length+'<br />');
-				app.username = a[0].user_name;
-				$("#device_info").append('app.username : '+app.username+ '<br />');
+				if (a.length>0)		
+				  app.username ="Merhaba : " + a[0].user_name;
+				else  				
+				  $("#device_info").append('Kullanıcı tanımınız yapılmamıştır. Lütfen yöneticinize danışınız ');
 			},
 			error : function(a, b, c) {
 				$("#device_info").append('hata aldı '+ '<br />');
@@ -70,7 +60,7 @@ var app = {
 						
 		if(app.status==null){
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id=2",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytypestatus&activity_type_id=2",
 			dataType : "json",
 			success : function(a, b, c) {
 			app.status=a;
@@ -87,7 +77,7 @@ var app = {
 		
 		if(app.personels==null){
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=employee",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=employee",
 			dataType : "json",
 			success : function(a, b, c) {
 			app.personels=a;
@@ -133,7 +123,7 @@ var app = {
 		$("#username").append(app.username);
 
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1",
 			dataType : "json",
 			success : function(a, b, c) {
 				app.productList = a;
@@ -176,7 +166,7 @@ var app = {
 		$("#usernameb").empty();
 		$("#usernameb").append(app.username);		
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetActivities?android_id=9feff6f179273142&jsonType=1",
+			url : app.url+"/istakip_yesis_webservices/GetActivities?android_id="+app.uuid+"&jsonType=1",
 			dataType : "json",
 			success : function(a, b, c) {
 				$("#div_liste_all").empty();
@@ -222,7 +212,7 @@ var app = {
 
 		if(app.status==null){
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=updateactivity&temp_activity_type_id=2&temp_status_id=2&temp_assignto=2&desc=dfdf",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=updateactivity&temp_activity_type_id=2&temp_status_id=2&temp_assignto=2&desc=dfdf",
 			dataType : "json",
 			success : function(a, b, c) {
 			app.status=a;
@@ -265,7 +255,7 @@ $.when(
 		
 		$.when(  
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=getactivity&activity_type_id=" + app.id,
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getactivity&activity_type_id=" + app.id,
 			dataType : "json",
 			success : function(a, b, c) {
 			var detays=[];
@@ -375,7 +365,9 @@ $.when(
 		}));
 	},
 	getYeni : function() {
-		console.log("getYeni:");
+				$("#usernamey").empty();
+		        $("#usernamey").append(app.username);
+
 				$('#twitList_yeni').empty();
 				$('#twitList_yeni ul').remove();
 				$('#twitList_yeni').append('<ul data-role="listview"></ul>');
@@ -389,7 +381,7 @@ $.when(
 	getPersonel : function(html,div_name) {
 		console.log("getPersonel:");
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=employee",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=employee",
 			dataType : "json",
 			success : function(a, b, c) {
 				html +='<select id="sel_personels">';
@@ -414,7 +406,7 @@ $.when(
 	getActivity : function(html,div_name) {
 		console.log("getPersonel:");
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytype",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytype",
 			dataType : "json",
 			success : function(a, b, c) {				
 				console.log("getProductsDetayx:", app.id);
@@ -440,7 +432,7 @@ $.when(
 	getActivityProperty : function(html,div_name) {
 		console.log("getPersonel:");
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytype&activity_type_id="+app.activity_type_id,
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytype&activity_type_id="+app.activity_type_id,
 			dataType : "json",
 			success : function(a, b, c) {				
 				console.log("getProductsDetayx:", app.id);
@@ -466,7 +458,7 @@ $.when(
 		console.log("gets Prop Satus:" + app.activity_type_id);
 		
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=activitytypestatus&activity_type_id="+app.activity_type_id,
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytypestatus&activity_type_id="+app.activity_type_id,
 			dataType : "json",
 			success : function(a, b, c) {				
 				console.log("sel_activity_status");
@@ -493,7 +485,7 @@ $.when(
 	getCustomer : function(html, div_name) {
 		console.log("getCustomer:");
 		$.ajax({
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=9feff6f179273142&jsonType=1&con_type=customer",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=customer",
 			dataType : "json",
 			success : function(a, b, c) {				
 				html ='Müşteri : <select id="sel_customer" style="width: 368px;">';
