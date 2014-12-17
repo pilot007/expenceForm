@@ -1,8 +1,10 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
+		console.log("init");
 		this.bindEvents();
 		app.url="http://85.97.120.30:9090";
+		
 		//app.url="http://127.0.0.1:9090";
 		//app.first_init();
 	},
@@ -11,16 +13,19 @@ var app = {
 	// Bind any events that are required on startup. Common events are:
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents : function() {
-		document.addEventListener('deviceready', this.onDeviceReady, true);
+		console.log("bindevent");
+		document.addEventListener('deviceready', this.onDeviceReady, false);
                             
 	},
 	onDeviceReady : function() {
+		console.log("ondevice ready");
 		app.receivedEvent('deviceready');
-		//app.first_init();
+		app.first_init();
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
-		checkConnection();
+		console.log("receive event");
+		//checkConnection();
 	},
 
 	productList : null,
@@ -36,7 +41,7 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		//app.uuid="0EE401AA-6EAE-4D13-99C0-57C473CBEC82";
+		app.uuid="A2468456-B8A1-479D-B575-01CA8ADC660F";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
@@ -210,15 +215,15 @@ var app = {
 		console.log("save func");
 		var result= $("#sel_personels option:selected").val();
 		var result2= $("#sel_status option:selected").val();
-		var desc= $("#comment").text();
+		var desc= $("#userDesc").val();
 		//if(app.status==null)
 		{
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=updateactivity&temp_activity_type_id="+app.id+"&temp_status_id="+result2+"&temp_assignto="+result + "&desc=" + comment,
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=updateactivity&temp_activity_type_id="+app.id+"&temp_status_id="+result2+"&temp_assignto="+result + "&desc=" + desc,
 			dataType : "json",
 			success : function(a, b, c) {
 			app.status=a;			
-			$.mobile.changePage($('#page1'));
+			$.mobile.changePage($('#benim'));
 			app.getProducts2();
 			},
 			error : function(a, b, c) {
@@ -322,8 +327,11 @@ $.when(
 					html = app.detays[i].project_id +'<br/>'+  
 					app.detays[i].company_name +'<br/>';
 					v_activity_status_id=app.detays[i].activity_status_id;
-					v_assigned_id=app.detays[i].assigned_id;  
-					html += ' <textarea id="comment" style="margin: 0px; width: 250px; height: 98px;">' + app.detays[i].project_desc  +' </textarea><br/>';
+					v_assigned_id=app.detays[i].assigned_id; 
+					$("#userDesc").empty();
+					$("#userDesc").val(app.detays[i].project_desc);
+ 
+					//html += ' <textarea id="comment" style="margin: 0px; width: 250px; height: 98px;" value="' + app.detays[i].project_desc  +'" /><br/>';
 				};
 
 				if(app.status!=null){
