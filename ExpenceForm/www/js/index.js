@@ -14,10 +14,6 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, true);
                             
 	},
-	// deviceready Event Handler
-	//
-	// The scope of 'this' is the event. In order to call the 'receivedEvent'
-	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
 		app.first_init();
@@ -56,7 +52,8 @@ var app = {
 			dataType : "json",
 			success : function(a, b, c) {
 				$("#device_info").append('başarılı oldu '+ '<br />');
-
+				$("#device_info").append('başarılı oldu size : '+ a.length+'<br />');
+				$("#device_info").append(a);
 				element2.innerHTML = "username:" + a.length ;
 				for (var i = 0; i < a.length; i++) {
 					element2.innerHTML = a[i].user_name;
@@ -152,7 +149,7 @@ var app = {
 
 				for (var i = 0; i < a.length; i++) {
 					html = '<h1><a id="prj_' + a[i].id + '" >'+ a[i].from + '</a></h1>';
-					html += ' <p> ' + app.username + "  " + a[i].subject + '</p>';
+					html += ' <p> ' + app.username +" " + app.uuid+ " </br> " + a[i].subject + '</p>';
 					listItems.append('<li>' + html + '</li>');
 				};
 				$('#twitList ul').listview();
