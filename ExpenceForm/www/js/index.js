@@ -45,24 +45,31 @@ var app = {
                             'Device UUID: '     + app.isnull(device.uuid)     + '<br />' +
                             'Device Version: '  + app.isnull(device.version)  + '<br />';		
 		
-		$("#deviceProperties2").append("UUID = " + app.isnull(device.uuid));
-	
 		$("#device_info").append('Bana Atananlar : '+ '<br />');
 		$("#device_info").append('Atanmamış bekleyenler : '+ '<br />');
 		$("#device_info").append('Diğer atanan işler : '+ '<br />');
-
+		$("#device_info").append('app.uuid : '+app.uuid+ '<br />');
+		app.uuid = app.isnull(device.uuid);
 		if(app.status==null){
 		$.ajax({			
-			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.isnull(device.uuid)+"&jsonType=1&con_type=getUserName",
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
 			dataType : "json",
 			success : function(a, b, c) {
+				$("#device_info").append('başarılı oldu '+ '<br />');
+
+				element2.innerHTML = "username:" + a.length ;
 				for (var i = 0; i < a.length; i++) {
-					element2.innerHTML = a[i].user_name;		
+					element2.innerHTML = a[i].user_name;
+					app.username = a[i].user_name;
+					$("#device_info").append('a[i].user_name : '+a[i].user_name+ '<br />');
 				};
-			
+			$("#device_info").append('bitti '+ '<br />');
 			console.log('status');
 			},
 			error : function(a, b, c) {
+				$("#device_info").append('hata aldı '+ '<br />');
+				element2.innerHTML = "hata username:";
+
 				console.log("err a ", a);
 				console.log("err b ", b);
 				console.log("err c ", c);
@@ -145,7 +152,7 @@ var app = {
 
 				for (var i = 0; i < a.length; i++) {
 					html = '<h1><a id="prj_' + a[i].id + '" >'+ a[i].from + '</a></h1>';
-					html += ' <p> ' + a[i].subject + '</p>';
+					html += ' <p> ' + app.username + "  " + a[i].subject + '</p>';
 					listItems.append('<li>' + html + '</li>');
 				};
 				$('#twitList ul').listview();
