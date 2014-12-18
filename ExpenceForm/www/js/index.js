@@ -25,6 +25,13 @@ var app = {
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		console.log("receive event");
+		$.mobile.touchOverflowEnabled = false;
+		$.mobile.defaultPageTransition = 'flip';
+		$.mobile.defaultDialogTransition = 'none';
+		$.mobile.transitionFallbacks.slide = 'none';
+		$.mobile.transitionFallbacks.pop = 'none';
+		$.mobile.buttonMarkup.hoverDelay = 0;
+		
 		//checkConnection();
 	},
 
@@ -41,7 +48,7 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		//app.uuid="A2468456-B8A1-479D-B575-01CA8ADC660F";
+		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
 		if(app.status==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
@@ -49,7 +56,7 @@ var app = {
 			success : function(a, b, c) {
 				if (a.length>0)		
 				  app.username ="Merhaba : " + a[0].user_name;
-				else  				
+				else
 				  $("#device_info").append('Kullanıcı tanımınız yapılmamıştır. Lütfen yöneticinize danışınız ');
 			},
 			error : function(a, b, c) {
@@ -139,9 +146,9 @@ var app = {
 				listItems = $('#twitList').find('ul');
 
 				for (var i = 0; i < a.length; i++) {
-					html = '<h1><a id="prj_' + a[i].id + '" >'+ a[i].from + '</a></h1>';
+					html = '<h1><a >'+ a[i].from + '</a></h1>';
 					html += ' <p> ' + a[i].subject + '</p>';
-					listItems.append('<li>' + html + '</li>');
+					listItems.append('<li id="prj_' + a[i].id + '">' + html + '</li>');
 				};
 				$('#twitList ul').listview();
 				
@@ -324,16 +331,19 @@ $.when(
 				
 				for (var i = 0; i < app.detays.length; i++) {
 					app.activity_type_id=app.detays[i].activity_id;
-					html = app.detays[i].project_id +'<br/>'+  
-					app.detays[i].company_name +'<br/>';
+					//html = app.detays[i].project_id +'<br/>'+ app.detays[i].company_name +'<br/>';
 					v_activity_status_id=app.detays[i].activity_status_id;
 					v_assigned_id=app.detays[i].assigned_id; 
 					$("#userDesc").empty();
+					$("#prjid").empty();
+					$("#compname").empty();
 					$("#userDesc").val(app.detays[i].project_desc);
+					$("#prjid").append("İş No: "+app.detays[i].project_id);
+					$("#compname").append("Şirket Adı: "+app.detays[i].company_name);
  
 					//html += ' <textarea id="comment" style="margin: 0px; width: 250px; height: 98px;" value="' + app.detays[i].project_desc  +'" /><br/>';
 				};
-
+				html="<br\>";
 				if(app.status!=null){
 				html +='<br/>'+'Personel : <select id="sel_personels" >';
 				for (var i = 0; i < app.personels.length; i++) 
