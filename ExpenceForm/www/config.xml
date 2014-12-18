@@ -12,7 +12,7 @@
     <feature name="http://api.phonegap.com/1.0/camera" />
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
-	<plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
+	<preference name="StatusBarOverlaysWebView" value="false" />
 	<gap:plugin name="org.apache.cordova.device" />
     
     
