@@ -48,8 +48,8 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
-		if(app.status==null){
+		//app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
+		if(app.username==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
 			dataType : "json",
@@ -63,6 +63,24 @@ var app = {
 				$("#device_info").append('hata aldı '+ '<br />');
 				element2.innerHTML = "hata username:";
 
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		}
+
+
+		if(app.statusType==null){
+		$.ajax({			
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id=="+app.uuid+"&jsonType=1&con_type=activitytype",
+			dataType : "json",
+			success : function(a, b, c) {
+			app.statusType=a;
+			console.log('statusType');
+			},
+			error : function(a, b, c) {
 				console.log("err a ", a);
 				console.log("err b ", b);
 				console.log("err c ", c);
@@ -95,6 +113,24 @@ var app = {
 			success : function(a, b, c) {
 			app.personels=a;
 			console.log('personel');
+	},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		}
+
+		
+		if(app.companies==null){
+		$.ajax({
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=customer",
+			dataType : "json",
+			success : function(a, b, c) {
+			app.companies=a;
+			console.log('companies');
 	},
 			error : function(a, b, c) {
 				console.log("err a ", a);
@@ -217,7 +253,47 @@ var app = {
 		});
 
 	},
-	
+
+	insertfunc : function() {
+		console.log("save func");
+		var result= $("#sel_personels_yeni option:selected").val();
+		var v_sel_company_yeni= $("#sel_company_yeni option:selected").val();
+		var v_sel_activity_yeni= $("#sel_activity_yeni option:selected").val();
+		var v_sel_activity_type_yeni= $("#sel_activity_type_yeni option:selected").val();
+		var v_sel_activity_status_yeni= $("#sel_activity_status_yeni option:selected").val();
+		var desc= $("#userDesc_yeni").val();
+		//if(app.status==null)
+		{
+		$.ajax({			
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=insertactivity"+
+			"&temp_status_id="+v_sel_activity_status_yeni+
+			"&temp_assignto="+result + "&desc=" + desc +
+			"&temp_activity_type_id="+v_sel_activity_yeni +
+			"&temp_activity_property_id="+v_sel_activity_type_yeni +
+			"&temp_company_id="+v_sel_company_yeni,
+			dataType : "json",
+			success : function(a, b, c) {
+			app.kaydettimi=a;			
+			$.mobile.changePage($('#benim'));
+			app.getProducts2();
+			},
+			error : function(a, b, c) {
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		}		
+		//alert("save func result:" + result + "result:" + result2);
+		//String temp_company_id=request.getParameter("temp_company_id");
+		//String temp_status_id=request.getParameter("temp_status_id");
+		//String temp_activity_type_id=request.getParameter("temp_activity_type_id");
+		//String temp_activity_property_id=request.getParameter("temp_activity_property_id");
+		//String temp_assignto=request.getParameter("temp_assignto");
+		//String desc=request.getParameter("desc");
+		
+	},	
 	savefunc : function() {
 		console.log("save func");
 		var result= $("#sel_personels option:selected").val();
@@ -276,42 +352,6 @@ $.when(
 			var detays=[];
 			app.detays=a;
 
-				/*$.mobile.changePage($('#detay'));
-				console.log("getProductsDetayx:", app.id);
-				$('#twitList_detay').empty();
-				$('#twitList_detay').append('<ul data-role="listview"></ul>');
-				listItems = $('#twitList_detay').find('ul');
-
-                /*[{ "project_id": "3000","company_id": "42",
-                 * "company_name": "baysallbaysallar uluslararasi nakliyat tic sanayi a.ş ",
-                 * "activity_id": "2","activity_name": "Servis",
-                 * "activity_property_id": "2","activity_property_name": "Helpdesk",
-                 * "activity_status_id": "9","activity_status": "Tamamlandı",
-                 * "project_desc": "Cengiz Bey internete giremiyor bilg. ip almıyor",
-                 * "assigned_id": "10","assigned_person": "Operasyon null"} ]*/
-                /*
-                v_activity_status_id='';
-                v_assigned_id='';
-				for (var i = 0; i < a.length; i++) {
-					app.activity_type_id=a[i].activity_id;
-					html = a[i].project_id +'<br/>'+  
-					a[i].company_name +'<br/>';
-					v_activity_status_id=a[i].activity_status_id;
-					v_assigned_id=a[i].assigned_id;  
-					html += ' <textarea name="comment" style="margin: 0px; width: 368px; height: 98px;">' + a[i].project_desc  +' </textarea><br/>';
-				};
-				//$('#twitList_detay').append(html);
-				app.html=html;
-				app.getPersonel(app.html ,'twitList_detay');
-				app.getActivityPropertyStatus(app.html,'twitList_detay');
-				
-				console.log("v_activity_status_id ", v_activity_status_id);
-				console.log("v_assigned_id ", v_assigned_id);
-				console.log("app.html ", app.html);
-				//$('#twitList_detay').append(app.html);
-				$('#twitList_detay ul').listview();
-				*/
-				
 			}			,
 			error : function(a, b, c) {
 				console.log("err a ", a);
@@ -333,6 +373,8 @@ $.when(
 					app.activity_type_id=app.detays[i].activity_id;
 					//html = app.detays[i].project_id +'<br/>'+ app.detays[i].company_name +'<br/>';
 					v_activity_status_id=app.detays[i].activity_status_id;
+					v_activity_id= app.detays[i].activity_id;
+					v_activity_property_id = app.detays[i].activity_property_id;
 					v_assigned_id=app.detays[i].assigned_id; 
 					$("#userDesc").empty();
 					$("#prjid").empty();
@@ -389,14 +431,105 @@ $.when(
 				$("#usernamey").empty();
 		        $("#usernamey").append(app.username);
 
-				$('#twitList_yeni').empty();
-				$('#twitList_yeni ul').remove();
-				$('#twitList_yeni').append('<ul data-role="listview"></ul>');
-				listItems = $('#twitList_yeni').find('ul');
-				//app.getPersonel(html,'twitList_yeni');
-				//app.getCustomer(html,'twitList_yeni');				
-				//$('#twitList_yeni').append('<button type="button" onclick="app.savefunc();">kaydet</button>');
-				$('#twitList_yeni ul').listview();		
+				for (var i = 0; i < app.personels.length; i++) 
+				{
+					var o = new Option(app.personels[i].user_name, app.personels[i].user_id);
+					$('#sel_personels_yeni').append(o);
+				};
+
+				for (var i = 0; i < app.companies.length; i++) 
+				{
+					var o = new Option(app.companies[i].company_name, app.companies[i].company_id);
+					$('#sel_company_yeni').append(o);
+				};				
+				
+				if(app.activity==null){
+				$.ajax({
+					url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytype",
+					dataType : "json",
+					success : function(a, b, c) {
+					app.activity=a;
+					console.log('detay activity');
+
+				for (var i = 0; i < app.activity.length; i++) 
+				{
+					var o = new Option(app.activity[i].activity_name, app.activity[i].activity_id);
+					$('#sel_activity_yeni').append(o);
+				};				
+
+			    },
+					error : function(a, b, c) {
+						console.log("err a ", a);
+						console.log("err b ", b);
+						console.log("err c ", c);
+						console.log("err c ", c);
+					}
+				});
+				}
+
+
+$('#sel_activity_yeni').change(function(){
+    console.log('Test: ' + $('#sel_activity_yeni').val());
+
+				$.ajax({
+					url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytypeproperty&activity_type_id="+$('#sel_activity_yeni').val(),
+					dataType : "json",
+					success : function(a, b, c) {
+					app.activity_prop=a;
+					console.log('detay activity prop');
+				
+				$('#sel_activity_type_yeni').empty();
+				var o = new Option("Seçiniz", -1);
+				$('#sel_activity_type_yeni').append(o);
+				for (var i = 0; i < app.activity_prop.length; i++) 
+				{
+					var o = new Option(app.activity_prop[i].user_name, app.activity_prop[i].activity_property_id);
+					$('#sel_activity_type_yeni').append(o);
+				};				
+
+			    },
+					error : function(a, b, c) {
+						console.log("err a ", a);
+						console.log("err b ", b);
+						console.log("err c ", c);
+						console.log("err c ", c);
+					}
+				});
+    
+    
+});
+
+	$('#sel_activity_type_yeni').change(function(){
+    console.log('sel_activity_type_yeni: ' + $('#sel_activity_type_yeni').val());
+    
+				$.ajax({
+					url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytypestatus2&activity_type_id="+$('#sel_activity_type_yeni').val(),
+					dataType : "json",
+					success : function(a, b, c) {
+					app.activity_prop_status=a;
+					console.log('detay activity status prop');
+				
+				$('#sel_activity_status_yeni').empty();
+				var o = new Option("Seçiniz", -1);
+				$('#sel_activity_status_yeni').append(o);
+
+				for (var i = 0; i < app.activity_prop_status.length; i++) 
+				{
+					var o = new Option(app.activity_prop_status[i].activity_status_name, app.activity_prop_status[i].activity_status_id);
+					$('#sel_activity_status_yeni').append(o);
+				};				
+
+			    },
+					error : function(a, b, c) {
+						console.log("err a ", a);
+						console.log("err b ", b);
+						console.log("err c ", c);
+						console.log("err c ", c);
+					}
+				});
+    
+});
+
 	},
 	
 	getPersonel : function(html,div_name) {
@@ -413,7 +546,6 @@ $.when(
 				html +='</select> <br/>';
 				app.html=html;
 				$('#'+div_name).append(app.html	);
-				//$('#sel_personels').val('');
 				
 	},
 			error : function(a, b, c) {

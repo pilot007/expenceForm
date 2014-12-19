@@ -11,7 +11,7 @@
 		<script src="style/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="style/jquery.mobile-1.2.0.min.css" />
 		
-
+d
 		 <script src="scripts/jquery-1.6.4.js" type="text/javascript"></script>
 		<script src="scripts/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 		<script src="scripts/cordova.js" type="text/javascript"></script>
@@ -25,7 +25,7 @@
         <h1>YESİS v1.3</h1>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
 			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
 			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
 			    </ul>
@@ -116,6 +116,31 @@
 		      </div>        
     </div><!-- /header -->
         <div data-role="content">
+    Şirket:
+ 	<select id="sel_company_yeni">
+ 		<option val="-1">seçiniz</option>	
+	</select> <br/>
+	Personel:
+ 	<select id="sel_personels_yeni">	
+ 		<option val="-1">seçiniz</option>	
+	</select> <br/>
+	
+	Açıklama
+ 	<div><textarea id="userDesc_yeni" style="margin: 0px; width: 250px; height: 98px;"></textarea></div>
+ 	
+ 	Aktivite
+ 	<select id="sel_activity_yeni">	
+ 		<option val="-1">seçiniz</option>	
+	</select> <br/>
+	Aktivite Tipi
+ 	<select id="sel_activity_type_yeni">	
+ 		<option val="-1">seçiniz</option>	
+	</select> <br/>
+	Aktivite Status
+ 	<select id="sel_activity_status_yeni">	
+ 		<option val="-1">seçiniz</option>	
+	</select> <br/>	
+	<input type="button" name="btn_kaydet" id="btn_kaydet" value="Kaydet" onclick="app.insertfunc()"/>	
 
 	<div id="twitList_yeni">
 	</div>
