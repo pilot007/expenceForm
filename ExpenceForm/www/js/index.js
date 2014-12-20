@@ -1,3 +1,39 @@
+    var pieData = [
+        {
+          value: 30,
+          color:"#F38630"
+        },
+        {
+          value : 50,
+          color : "#E0E4CC"
+        },
+        {
+          value : 100,
+          color : "#69D2E7"
+        }
+      
+      ];
+      		var lineChartData = {
+		 labels : ["","","","","","",""],
+		 datasets : [
+		 {
+		 fillColor : "rgba(220,220,220,0.5)",
+		 strokeColor : "rgba(220,220,220,1)",
+		 pointColor : "rgba(220,220,220,1)",
+		 pointStrokeColor : "#fff",
+		 data : [65,59,90,81,56,55,40]
+		 },
+		 {
+		 fillColor : "rgba(151,187,205,0.5)",
+		 strokeColor : "rgba(151,187,205,1)",
+		 pointColor : "rgba(151,187,205,1)",
+		 pointStrokeColor : "#fff",
+		 data : [28,48,40,19,96,27,100]
+		 }
+		 ]
+		 
+		 };		
+		 
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -21,16 +57,20 @@ var app = {
 		console.log("ondevice ready");
 		app.receivedEvent('deviceready');
 		app.first_init();
+		
+	//new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+	  new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
+		
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		console.log("receive event");
-		$.mobile.touchOverflowEnabled = false;
-		$.mobile.defaultPageTransition = 'flip';
-		$.mobile.defaultDialogTransition = 'none';
-		$.mobile.transitionFallbacks.slide = 'none';
-		$.mobile.transitionFallbacks.pop = 'none';
-		$.mobile.buttonMarkup.hoverDelay = 0;
+		//$.mobile.touchOverflowEnabled = false;
+		//$.mobile.defaultPageTransition = 'flip';
+		//$.mobile.defaultDialogTransition = 'none';
+		//$.mobile.transitionFallbacks.slide = 'none';
+		//$.mobile.transitionFallbacks.pop = 'none';
+		//$.mobile.buttonMarkup.hoverDelay = 0;
 		
 		//checkConnection();
 	},
@@ -48,7 +88,7 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		//app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
+		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
 		if(app.username==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",
