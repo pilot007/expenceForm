@@ -1,17 +1,4 @@
     var pieData = [
-        {
-          value: 30,
-          color:"#F38630"
-        },
-        {
-          value : 50,
-          color : "#E0E4CC"
-        },
-        {
-          value : 100,
-          color : "#69D2E7"
-        }
-      
       ];
       		var lineChartData = {
 		 labels : ["","","","","","",""],
@@ -59,7 +46,7 @@ var app = {
 		app.first_init();
 		
 	//new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-	  new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
+	  
 		
 	},
 	// Update DOM on a Received Event
@@ -89,6 +76,39 @@ var app = {
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
 		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
+		$.ajax({			
+			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+"123456789"+"&jsonType=1&con_type=getPieChart",
+			dataType : "json",
+			success : function(a, b, c) {
+				pieData=[];
+				$("#device_info").empty();
+				for (var i = 0; i < a.length; i++) {
+					var x ={value:parseInt(a[i].count), color:a[i].user_color};
+					pieData.push(x);
+					//console.log(x);
+					//pieData[i].value=a[i].count;
+					//pieData[i].color=a[i].user_color;
+					
+					$("#device_info").append("<font style=background-color:"+a[i].user_color+">" + a[i].user_name+"  (" +a[i].count+")</font>"+ '<br />');					
+				};				
+				new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
+
+				
+				//{ "user_name": "Ersin","user_color": "#E0E4CC","count": "2"}
+			},
+			error : function(a, b, c) {
+				$("#device_info").append('hata aldı '+ '<br />');
+				element2.innerHTML = "hata username:";
+
+				console.log("err a ", a);
+				console.log("err b ", b);
+				console.log("err c ", c);
+				console.log("err c ", c);
+			}
+		});
+		
+		
+		
 		if(app.username==null){
 		$.ajax({			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=getUserName",

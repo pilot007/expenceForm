@@ -15,28 +15,27 @@
 		<script src="scripts/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 		<script src="scripts/cordova.js" type="text/javascript"></script>
 		<link rel="Stylesheet" href="style/jquery.mobile-1.2.0.min.css" />		        
-    
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    		
  		<script src="Chart.min.js"></script>
  		
 </head>
     <body onload="app.onDeviceReady()">
 <div data-role="page" id="page1">
     <div data-role="header">
-        <h1>YESİS v1.3</h1>
+        <center>YESİS</"center> 
 		      <div data-role="navbar">
 			    <ul>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
+			      <li><a href="#page1" data-ajax="false"><img src="img/ana.gif"> </img></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      
 			    </ul>
 		      </div>        
     </div><!-- /header -->
 <div data-role="content">
+       <canvas id="line" height="250" width="250"></canvas>
     	<div id="device_info">
-  <input type="button" name="searchButt" id="searchButt" value="Yenile" onclick="app.first_init()"/>
-       <canvas id="line" height="200" width="100"></canvas>
-
 		</div>
 </div>
 	
@@ -44,12 +43,14 @@
 
 <div data-role="page" id="benim">
     <div data-role="header">
-        <h1>YESİS</h1><div id="username"></div>
+        <center>YESİS</"center><div id="username"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
+			      <li><a href="#page1" data-ajax="false"><img src="img/ana.gif"> </img></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+
 			    </ul>
 		      </div>        
     </div><!-- /header -->	
@@ -64,12 +65,14 @@
 
 <div data-role="page" id="bekleyenler">
     <div data-role="header">
-        <h1>YESİS</h1><div id="usernameb"></div>
+        <center>YESİS</"center><div id="usernameb"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
+			      <li><a href="#page1" data-ajax="false"><img src="img/ana.gif"> </img></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+
 			    </ul>
 		      </div>        
     </div><!-- /header -->	
@@ -85,12 +88,14 @@
 <!-- Start of second page -->
 <div data-role="page" id="detay">
     <div data-role="header">
-        <h1>YESİS</h1><div id="usernamed"></div>
+        <center>YESİS</"center><div id="usernamed"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+
 			    </ul>
 		      </div>        
     </div><!-- /header -->
@@ -109,12 +114,14 @@
 <!-- Start of second page -->
 <div data-role="page" id="yeni">
     <div data-role="header">
-        <h1>YESİS</h1><div id="username"></div><div id="usernamey"></div>
+        <center>YESİS</"center><div id="username"></div><div id="usernamey"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#benim" data-ajax="false" onclick="app.getProducts2()" >İşlerim</a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()">Bekleyenler</a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()">Yeni</a></li>
+			      <li><a href="#page1" data-ajax="false"><img src="img/ana.gif"> </img></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+
 			    </ul>
 		      </div>        
     </div><!-- /header -->
