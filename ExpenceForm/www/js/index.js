@@ -1,25 +1,5 @@
     var pieData = [
       ];
-      		var lineChartData = {
-		 labels : ["","","","","","",""],
-		 datasets : [
-		 {
-		 fillColor : "rgba(220,220,220,0.5)",
-		 strokeColor : "rgba(220,220,220,1)",
-		 pointColor : "rgba(220,220,220,1)",
-		 pointStrokeColor : "#fff",
-		 data : [65,59,90,81,56,55,40]
-		 },
-		 {
-		 fillColor : "rgba(151,187,205,0.5)",
-		 strokeColor : "rgba(151,187,205,1)",
-		 pointColor : "rgba(151,187,205,1)",
-		 pointStrokeColor : "#fff",
-		 data : [28,48,40,19,96,27,100]
-		 }
-		 ]
-		 
-		 };		
 		 
 var app = {
 	// Application Constructor
@@ -52,12 +32,12 @@ var app = {
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		console.log("receive event");
-		//$.mobile.touchOverflowEnabled = false;
-		//$.mobile.defaultPageTransition = 'flip';
-		//$.mobile.defaultDialogTransition = 'none';
-		//$.mobile.transitionFallbacks.slide = 'none';
-		//$.mobile.transitionFallbacks.pop = 'none';
-		//$.mobile.buttonMarkup.hoverDelay = 0;
+		$.mobile.touchOverflowEnabled = false;
+		$.mobile.defaultPageTransition = 'flip';
+		$.mobile.defaultDialogTransition = 'none';
+		$.mobile.transitionFallbacks.slide = 'none';
+		$.mobile.transitionFallbacks.pop = 'none';
+		$.mobile.buttonMarkup.hoverDelay = 0;
 		
 		//checkConnection();
 	},
@@ -76,7 +56,7 @@ var app = {
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
 		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
-		$.ajax({			
+		$.ajax({
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+"123456789"+"&jsonType=1&con_type=getPieChart",
 			dataType : "json",
 			success : function(a, b, c) {
@@ -345,14 +325,6 @@ var app = {
 			}
 		});
 		}		
-		//alert("save func result:" + result + "result:" + result2);
-		//String temp_company_id=request.getParameter("temp_company_id");
-		//String temp_status_id=request.getParameter("temp_status_id");
-		//String temp_activity_type_id=request.getParameter("temp_activity_type_id");
-		//String temp_activity_property_id=request.getParameter("temp_activity_property_id");
-		//String temp_assignto=request.getParameter("temp_assignto");
-		//String desc=request.getParameter("desc");
-		
 	},	
 	savefunc : function() {
 		console.log("save func");
@@ -376,15 +348,7 @@ var app = {
 				console.log("err c ", c);
 			}
 		});
-		}		
-		//alert("save func result:" + result + "result:" + result2);
-		//String temp_company_id=request.getParameter("temp_company_id");
-		//String temp_status_id=request.getParameter("temp_status_id");
-		//String temp_activity_type_id=request.getParameter("temp_activity_type_id");
-		//String temp_activity_property_id=request.getParameter("temp_activity_property_id");
-		//String temp_assignto=request.getParameter("temp_assignto");
-		//String desc=request.getParameter("desc");
-		
+		}				
 	},
 	getProductsDetay : function(id) {
 		$("#usernamed").empty();
@@ -721,12 +685,6 @@ $('#sel_activity_yeni').change(function(){
 	},	
 	getTurkish : function(str) {
 		return str;
-		/*
-		 .replace( "-1-","ı").replace( "-11-","I").replace( "-2-","ş").replace("-22-","Ş").replace("-33-","İ")
-		 .replace("-4-","ö").replace("-44-","Ö")
-		 .replace("-5-","ü").replace("-55-","Ü")
-		 .replace("-6-","ç").replace("-66-","Ç")
-		 .replace("-7-","ğ").replace( "-77-","Ğ");*/
 	},
 	openCamera : function() {
 		var onCamSuccess = function(imageData) {
