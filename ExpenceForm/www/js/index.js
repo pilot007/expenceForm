@@ -1,6 +1,32 @@
     var pieData = [
       ];
-		 
+    var pieOptions = [
+{
+    //Boolean - Whether we should show a stroke on each segment
+    segmentShowStroke : true,
+    //String - The colour of each segment stroke
+    segmentStrokeColor : "#fff",
+    //Number - The width of each segment stroke
+    segmentStrokeWidth : 2,
+    //Number - The percentage of the chart that we cut out of the middle
+    percentageInnerCutout : 50, // This is 0 for Pie charts
+
+    //Number - Amount of animation steps
+    animationSteps : 100,
+    //String - Animation easing effect
+    animationEasing : "easeOutBounce",
+
+    //Boolean - Whether we animate the rotation of the Doughnut
+    animateRotate : true,
+
+    //Boolean - Whether we animate scaling the Doughnut from the centre
+    animateScale : false,
+
+    //String - A legend template
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+}
+];		 
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -63,17 +89,18 @@ var app = {
 				pieData=[];
 				$("#device_info").empty();
 				for (var i = 0; i < a.length; i++) {
-					var x ={value:parseInt(a[i].count), color:a[i].user_color};
+					var x ={value:parseInt(a[i].count), color:a[i].user_color, label:a[i].user_name, highlight: "#5AD3D1"};
 					pieData.push(x);
 					//console.log(x);
 					//pieData[i].value=a[i].count;
 					//pieData[i].color=a[i].user_color;
 					
 					$("#device_info").append("<font style=background-color:"+a[i].user_color+">" + a[i].user_name+"  (" +a[i].count+")</font>"+ '<br />');					
-				};				
-				new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
-
+				};	
 				
+				//style="width: 300px; height: 300px;"
+				//new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
+				new Chart(document.getElementById("line").getContext("2d")).Pie(pieData,pieOptions);				
 				//{ "user_name": "Ersin","user_color": "#E0E4CC","count": "2"}
 			},
 			error : function(a, b, c) {
