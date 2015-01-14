@@ -13,6 +13,8 @@
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
     
+	<gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
+    
     
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />

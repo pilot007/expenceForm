@@ -79,6 +79,7 @@ var app = {
 		return p;
 	},
 	first_init : function(){
+		app.mapLoaded();
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
 		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
