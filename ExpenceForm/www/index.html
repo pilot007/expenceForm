@@ -20,9 +20,44 @@
  		
 </head>
     <body onload="app.onDeviceReady()">    	
+    	
+    	
+        <!--start login page-->
+        <div data-role="page" id="login_form">
+            <div data-role="header" align="center">
+                <h1>Login Ekranı</h1>
+            </div>
+            <div data-role="main" class="ui-content" align="center">
+             <table border="0">
+                <tr> 
+                <td>Kullanıcı Adı:<span>*</span></td>
+                <td><input type="text" id="username_" placeholder="username"/> </td>
+                </tr>
+                <tr> 
+                <td>Şifre:<span>*</span></td>
+                <td><input type="password" id="password" placeholder="password"/> </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input type="button" name="btn_login" id="btn_login" value="Giriş" onclick="app.loginfnc()"/></td>
+                </tr>
+                
+            </table>
+            <br />
+            <br />
+               <p>
+                    <a href="#"> <img src="img/login_with_facebook.jpg" height="30"/></a>
+                    <br />
+                    <br />
+                    <br />
+               </p>
+            </div>
+        </div> 
+        <!--end login page-->    	
+    	
 <div data-role="page" id="page1">
     <div data-role="header">    	
-        <center>YESİS</"center> 
+        <center>BİLİM YAZILIM</"center> 
 		      <div data-role="navbar">
 			    <ul>
 			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
@@ -43,7 +78,7 @@
 
 <div data-role="page" id="benim">
     <div data-role="header">
-        <center>YESİS</"center><div id="username"></div>
+        <center>BİLİM YAZILIM</"center><div id="username"></div>
 		      <div data-role="navbar">
 			    <ul>
 			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
@@ -65,7 +100,7 @@
 
 <div data-role="page" id="bekleyenler">
     <div data-role="header">
-        <center>YESİS</"center><div id="usernameb"></div>
+        <center>BİLİM YAZILIM</"center><div id="usernameb"></div>
 		      <div data-role="navbar">
 			    <ul>
 			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
@@ -88,7 +123,7 @@
 <!-- Start of second page -->
 <div data-role="page" id="detay">
     <div data-role="header">
-        <center>YESİS</"center><div id="usernamed"></div>
+        <center>BİLİM YAZILIM</"center><div id="usernamed"></div>
 		      <div data-role="navbar">
 			    <ul>
 			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
@@ -114,7 +149,7 @@
 <!-- Start of second page -->
 <div data-role="page" id="yeni">
     <div data-role="header">
-        <center>YESİS</"center><div id="username"></div><div id="usernamey"></div>
+        <center>BİLİM YAZILIM</"center><div id="username"></div><div id="usernamey"></div>
 		      <div data-role="navbar">
 			    <ul>
 			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
