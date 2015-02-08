@@ -80,9 +80,9 @@ var app = {
 	},
 	first_init : function(){
 		app.mapLoaded();
-		app.uuid = app.isnull(device.uuid);
+		//app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
+		//app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
 		$.ajax({
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+"123456789"+"&jsonType=1&con_type=getPieChart",
 			dataType : "json",
@@ -608,9 +608,43 @@ $('#sel_activity_yeni').change(function(){
 			}
 		});		
 	},
+	
+	loginfnc : function() {
+        is_guest = false;
+        //app.uuid = app.isnull(device.uuid);
+        console.log("login form");
+        var usernamex = $("#username_").val();
+        var passwordx = $("#password_").val();
+        $.ajax({            
+    		url : app.url+"/istakip_yesis_webservices/GetMyActivities?con_type=loginMobile&username="+usernamex+"&password="+passwordx+"&android_id="+app.uuid,
+            dataType : "json",
+            success : function(a, b, c) {         
+                    if (a.status == 'ok') {
+                    	app.user_name="Merhaba : " + a.name + " " + a.surname ;
+                    	app.username="Merhaba : " + a.name + " " + a.surname ;
+						app.user_id= a.mac_id;	
+						app.uuid= a.mac_id;	
+                        $.mobile.changePage("#page1");                        
+                    }
+                    else{
+                        alert("Lütfen kullanıcı adı ve şifrenizi doğru giriniz!");
+                        $('#username').removeAttr('value');
+                        $('#password').removeAttr('value'); 
+                    }
+            },
+            error : function(a, b, c) {
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        });             
+    },
+	
 	getActivity : function(html,div_name) {
 		console.log("getPersonel:");
 		$.ajax({
+			
 			url : app.url+"/istakip_yesis_webservices/GetMyActivities?android_id="+app.uuid+"&jsonType=1&con_type=activitytype",
 			dataType : "json",
 			success : function(a, b, c) {				
@@ -780,45 +814,7 @@ $('#sel_activity_yeni').change(function(){
 	mapLoaded : function() {
 		console.log("mapLoaded");
 		app.detectCurrentLocation();
-	},
-	loginfnc : function() {
-        is_guest = false;
-        console.log("login form");
-        var username = $("#username_").val();
-        var password = $("#password").val();
-        $.ajax({            
-            url : app.url+"GetMember?username="+username+"&password="+password,
-            dataType : "json",
-            success : function(a, b, c) {         
-           // $.mobile.changePage("#login");
-                if (a != null && a.length > 0) {
-                    if (a[0].status == 'ok') {                    	
-                    	app.id = a[0].member_id;                    	
-                    	app.user_name="Merhaba : " + a[0].name + " " + a[0].surname ;
-						app.user_id= a[0].member_id;						
-                    	
-                        app.first_init();
-                        app.check_campains();
-                        $.mobile.changePage("#barkod");                        
-                    }else{
-                        alert("Lütfen kullanıcı adı ve şifrenizi doğru giriniz!");
-                        $('#username').removeAttr('value');
-                        $('#password').removeAttr('value'); 
-                    }
-               }else{
-                    alert("Kullanıcı adı bulunamadı!");
-                    $('#username').removeAttr('value');
-                    $('#password').removeAttr('value'); 
-               }
-            },
-            error : function(a, b, c) {
-                console.log("err a ", a);
-                console.log("err b ", b);
-                console.log("err c ", c);
-                console.log("err c ", c);
-            }
-        });             
-    }
+	}
 	
 	/*,
 	findById : function(url, id) {
