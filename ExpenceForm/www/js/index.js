@@ -57,6 +57,7 @@ var app = {
           $('#username_').val(window.localStorage["username_rem"]);
           $('#password_').val(window.localStorage["password_rem"]);
           $("#remember_me").attr('checked', true).checkboxradio("refresh");
+          
        }                
     }
     
