@@ -60,7 +60,7 @@ var app = {
           $('#password_').val(window.localStorage["password_rem"]);
           $("#remember_me").attr('checked', true).checkboxradio("refresh");
           
-       }                
+       }
     }
     
 		console.log("ondevice ready");
