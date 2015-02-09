@@ -33,12 +33,12 @@ $(document).on("pageshow", "#login_form", function(e){
 $(document).on("click", "#btn_login", function(e){
     var u = $('#username_]').val();
     var p = $('#Password_]').val();
-    if($("#remember_me").is(':checked')){               
+    if($("#remember_me").is(':checked')){
       window.localStorage["username_rem"] = u;
-      window.localStorage["password_rem"] = p;                        
+      window.localStorage["password_rem"] = p;
     }else{
-      window.localStorage["username_rem"] = "";
-      window.localStorage["password_rem"] = ""; 
+      window.localStorage["username_rem"] = "selami";
+      window.localStorage["password_rem"] = "yesilyurt"; 
     }
 });   
 </script>
@@ -56,7 +56,7 @@ $(document).on("click", "#btn_login", function(e){
              <table border="0">
                 <tr> 
                 <td>Kullanıcı Adı:<span>*</span></td>
-                <td><input type="text" id="username_" placeholder="username"/> </td>
+                <td><input type="text" id="username_" /> </td>
                 </tr>
                 <tr> 
                 <td>Şifre:<span>*</span></td>
