@@ -49,7 +49,9 @@ var app = {
 	onDeviceReady : function() {
 	//alert('2222');
 	//window.localStorage["username_rem"] = "selami";
+	
     //window.localStorage["password_rem"] = "yesilyurt";
+    //*******
     if(window.localStorage["username_rem"] != undefined && window.localStorage["password_rem"] != undefined) 
     {
     	
