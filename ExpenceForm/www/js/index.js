@@ -47,6 +47,19 @@ var app = {
                             
 	},
 	onDeviceReady : function() {
+	//alert('2222');
+	//window.localStorage["username_rem"] = "selami";
+    //window.localStorage["password_rem"] = "yesilyurt";
+    if(window.localStorage["username_rem"] != undefined && window.localStorage["password_rem"] != undefined) 
+    {
+    	
+        if(window.localStorage["username_rem"] != "" && window.localStorage["password_rem"] != ""){                 
+          $('#username_').val(window.localStorage["username_rem"]);
+          $('#password_').val(window.localStorage["password_rem"]);
+          $("#remember_me").attr('checked', true).checkboxradio("refresh");
+       }                
+    }
+    
 		console.log("ondevice ready");
 		app.receivedEvent('deviceready');
 		app.first_init();
@@ -64,7 +77,8 @@ var app = {
 		$.mobile.transitionFallbacks.slide = 'none';
 		$.mobile.transitionFallbacks.pop = 'none';
 		$.mobile.buttonMarkup.hoverDelay = 0;
-		
+
+
 		//checkConnection();
 	},
 
@@ -612,6 +626,17 @@ $('#sel_activity_yeni').change(function(){
 	loginfnc : function() {
         is_guest = false;
         //app.uuid = app.isnull(device.uuid);
+
+	
+    var u = $('#username_').val();
+    var p = $('#password_').val();
+    if($("#remember_me").is(':checked')){
+      window.localStorage["username_rem"] = u;
+      window.localStorage["password_rem"] = p;
+    }else{
+      window.localStorage["username_rem"] = "";
+      window.localStorage["password_rem"] = "";
+    }    
         console.log("login form");
         var usernamex = $("#username_").val();
         var passwordx = $("#password_").val();

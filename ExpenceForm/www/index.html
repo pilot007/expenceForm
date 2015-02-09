@@ -17,21 +17,25 @@
 		<link rel="Stylesheet" href="style/jquery.mobile-1.2.0.min.css" />		        
     		
  		<script src="Chart.min.js"></script>
- 		
+
+  		
 </head>
     <body onload="app.onDeviceReady()">    	
-    	
-    	
+
         <!--start login page-->
         <div data-role="page" id="login_form">
+      	
             <div data-role="header" align="center">
                 <h1>Login Ekranı</h1>
             </div>
             <div data-role="main" class="ui-content" align="center">
+            	  <br />
+                  <br />
+                  <br />
              <table border="0">
                 <tr> 
                 <td>Kullanıcı Adı:<span>*</span></td>
-                <td><input type="text" id="username_" /> </td>
+                <td><input type="text" id="username_" placeholder="username"/> </td>
                 </tr>
                 <tr> 
                 <td>Şifre:<span>*</span></td>
@@ -39,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>
-                    	<!-- <input type="checkbox" name="remember_me" id="remember_me" class="custom check" /> -->
+                    	<input type="checkbox" name="remember_me" id="remember_me" class="custom check" />
                     </td>
                     <td><input type="button" name="btn_login" id="btn_login" value="Giriş" onclick="app.loginfnc()"/></td>
                 </tr>
@@ -48,10 +52,7 @@
             <br />
             <br />
                <p>
-                    <a href="#"> <img src="img/login_with_facebook.jpg" height="30"/></a>
-                    <br />
-                    <br />
-                    <br />
+                  
                </p>
             </div>
         </div> 
@@ -205,5 +206,6 @@
         <script type="text/javascript">
             app.initialize();
         </script>
+         
     </body>
 </html>
