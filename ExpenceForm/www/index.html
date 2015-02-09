@@ -17,31 +17,6 @@
 		<link rel="Stylesheet" href="style/jquery.mobile-1.2.0.min.css" />		        
     		
  		<script src="Chart.min.js"></script>
-
-<script>
-$(document).on("pageshow", "#login_form", function(e){
-    if(window.localStorage["username_rem"] != undefined && window.localStorage["password_rem"] != undefined) 
-    {
-        if(window.localStorage["username_rem"] != "" && window.localStorage["password_rem"] != ""){                 
-          $('#username_').val(window.localStorage["username_rem"]);
-          $('#vPassword_').val(window.localStorage["password_rem"]);
-          $("#remember_me").attr('checked', true).checkboxradio("refresh");
-       }                
-    }
-});
-
-$(document).on("click", "#btn_login", function(e){
-    var u = $('#username_]').val();
-    var p = $('#Password_]').val();
-    if($("#remember_me").is(':checked')){
-      window.localStorage["username_rem"] = u;
-      window.localStorage["password_rem"] = p;
-    }else{
-      window.localStorage["username_rem"] = "selami";
-      window.localStorage["password_rem"] = "yesilyurt"; 
-    }
-});   
-</script>
  		
 </head>
     <body onload="app.onDeviceReady()">    	
