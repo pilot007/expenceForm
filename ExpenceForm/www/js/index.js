@@ -118,7 +118,7 @@ var app = {
 				
 				//style="width: 300px; height: 300px;"
 				//new Chart(document.getElementById("line").getContext("2d")).Pie(pieData);
-				new Chart(document.getElementById("line").getContext("2d")).Pie(pieData,pieOptions);				
+				//new Chart(document.getElementById("line").getContext("2d")).Pie(pieData,pieOptions);				
 				//{ "user_name": "Ersin","user_color": "#E0E4CC","count": "2"}
 			},
 			error : function(a, b, c) {
