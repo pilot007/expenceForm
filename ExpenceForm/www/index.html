@@ -14,7 +14,8 @@
 	 	<script src="scripts/jquery-1.6.4.js" type="text/javascript"></script>
 		<script src="scripts/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 		<script src="scripts/cordova.js" type="text/javascript"></script>
-		<link rel="Stylesheet" href="style/jquery.mobile-1.2.0.min.css" />		        
+		<link rel="Stylesheet" href="style/jquery.mobile-1.2.0.min.css" />
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>		        
     		
  		<script src="Chart.min.js"></script>
 
@@ -49,7 +50,6 @@
                 </tr>
                 
             </table>
-             <p><a href="#" class="topcoat-button" id="scan">SCAN</a></p>
             <br />
             <br />
                <p>
@@ -61,13 +61,14 @@
     	
 <div data-role="page" id="page1">
     <div data-role="header">    	
-        <center>YESİS CRM</"center> 
+        <center>YESİS CRM</center> 
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" width="8%"> <img/></a>
 			      
 			    </ul>
 		      </div>        
@@ -82,13 +83,14 @@
 
 <div data-role="page" id="benim">
     <div data-role="header">
-        <center>YESİS CRM</"center><div id="username"></div>
+        <center>YESİS CRM</center><div id="username"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" width="8%"> <img/></a>
 
 			    </ul>
 		      </div>        
@@ -104,13 +106,14 @@
 
 <div data-role="page" id="bekleyenler">
     <div data-role="header">
-        <center>YESİS CRM</"center><div id="usernameb"></div>
+        <center>YESİS CRM</center><div id="usernameb"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" width="8%"> <img/></a>
 
 			    </ul>
 		      </div>        
@@ -127,13 +130,14 @@
 <!-- Start of second page -->
 <div data-role="page" id="detay">
     <div data-role="header">
-        <center>YESİS CRM</"center><div id="usernamed"></div>
+        <center>YESİS CRM</center><div id="usernamed"></div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" width="8%"> <img/></a>
 
 			    </ul>
 		      </div>        
@@ -150,16 +154,74 @@
  
 </div><!-- /page -->
 
+<!--show directoion map page-->
+<div data-role="page" id="direction_page">
+    <div data-role="header" align="center">
+        <br/>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"/> </a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png"/></a>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->
+    
+    <div data-role="content" id="map_cont" style="padding:0;position:absolute;top:190px;right:0px;bottom:0px;left:0px;">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2qBI9GSPtX0zrcLHLhPtc519cEPyGotw&sensor=false"> </script>
+        <div id="map_direction"  style="width:100%; height: 100%;" > </div>
+    </div> 
+
+</div><!-- /page -->
+
+<!--start new page-->
+<div data-role="page" id="map_branch_page">
+    <div data-role="header" align="center">
+        <br/>
+		      <div data-role="navbar">
+			    <ul>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" width="8%"> <img/></a>
+			    </ul>
+		      </div>        
+    </div><!-- /header -->
+    <div data-role="content">        
+         <div style="position: relative;">
+             <table>
+                 <tr>
+                     <td>
+                         <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/map_direct.png" width="90%"/></a>
+                     </td>
+                     <td>
+                         <a href="#location_list" data-ajax="false" onclick="app.fnc_location_list()"><img src="img/branch_list.png" width="90%"/></a>
+                     </td>
+                 </tr>
+             </table>
+         </div>
+   
+    </div>
+</div>
+<!--end new page-->     
+
+
+
+
 <!-- Start of second page -->
 <div data-role="page" id="yeni">
     <div data-role="header">
-        <center>YESİS CRM</"center><div id="username"></div><div id="usernamey"></div>
+        <center>YESİS CRM</center> <div id="username"> </div> <div id="usernamey"> </div>
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> </img></a></li>
-			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> </img></a></li>
-			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> </img></a></li>
-			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> </img></a></li>
+			      <li><a href="#page1" data-ajax="false" onclick="app.first_init()"><img src="img/ana.gif"> <img/></a></li>
+			      <li> <a href="#benim" data-ajax="false" onclick="app.getProducts2()" ><img src="img/ara.gif"> <img/></a></li>
+			      <li><a href="#bekleyenler" data-ajax="false" onclick="app.getProductsall()"><img src="img/hepsi.gif"> <img/></a></li>
+			      <li><a href="#yeni" data-ajax="false" onclick="app.getYeni()"><img src="img/ekle.gif"> <img/></a></li>
+			      <a href="#map_branch_page" data-ajax="false" ><img src="img/7_Map.png" > <img/></a>
 
 			    </ul>
 		      </div>        
